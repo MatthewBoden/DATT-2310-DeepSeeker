@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private bool isSprinting;
     private bool isHurt;
 
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Get Rigidbody2D component
