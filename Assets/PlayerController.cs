@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")]
     public float moveSpeed = 1.5f;  // Movement speed
     public float acceleration = 2f; 
-    public float sprintMultiplier = 1.15f; // When player presses shift, speed is multiplied by this value
+    public float sprintMultiplier = 1.75f; // When player presses shift, speed is multiplied by this value
     public float health; // Health points
     public float stamina; // How long player sprints for
     public float strength; // How much damage player deals
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
         // Apply velocity for smooth movement
         Vector2 targetVelocity = moveInput * currentSpeed;
-        rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity, acceleration * Time.fixedDeltaTime);
+        rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity, acceleration * Time.deltaTime);
 
         // Check if player is sprinting
         if ((Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.A)) || (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.D)))

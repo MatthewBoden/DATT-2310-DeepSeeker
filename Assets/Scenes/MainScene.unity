@@ -158,6 +158,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1.5
   acceleration: 2
+  sprintMultiplier: 1.75
+  health: 0
+  stamina: 0
+  strength: 0
 --- !u!70 &519524009
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
