@@ -24,7 +24,14 @@ namespace Fish
         // Box collider
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            Destroy(gameObject);
+            if (type == FishType.Passive)
+            {
+                Destroy(gameObject);
+            }
+            else if (type == FishType.Aggressive)
+            {
+                
+            }
         }
 
         // Circle collider
