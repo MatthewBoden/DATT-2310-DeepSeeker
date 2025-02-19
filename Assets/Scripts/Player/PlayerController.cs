@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool isSprinting;
     private bool isHurt;
-
+    private 
 
     void Start()
     {
@@ -64,5 +64,17 @@ public class PlayerController : MonoBehaviour
             spriteRenderer.flipX = false;
         else if (rb.velocity.x < -0.1f)
             spriteRenderer.flipX = true;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        animator.SetBool("isHurt", true);
+        CancelInvoke(nameof(ResetHurt));
+        Invoke(nameof(ResetHurt), 1f);
+    }
+
+    private void ResetHurt()
+    {
+        animator.SetBool("isHurt", false);
     }
 }

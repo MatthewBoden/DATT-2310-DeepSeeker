@@ -10,18 +10,21 @@ namespace Fish
         [SerializeField] private float movementSpeed;
         [SerializeField] private float acceleration;
         [SerializeField] private float deceleration;
+        [SerializeField] private float pushForce;
         
         private bool _isMoving;
         private Vector2 _movementDirection;
         private Rigidbody2D _rigidbody;
         private SpriteRenderer _spriteRenderer;
         private PlayerController _player;
+        private Rigidbody2D _playerRigidbody;
 
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _player = FindObjectOfType<PlayerController>();
+            _playerRigidbody = _player.GetComponent<Rigidbody2D>();
         }
 
         private void Update()
@@ -65,7 +68,9 @@ namespace Fish
             }
             else if (type == FishType.Aggressive)
             {
-                
+                _player.TakeDamage(0);
+                var direction = (_player.transform.position - transform.position).normalized;
+                _playerRigidbody.AddForce(direction * pushForce, ForceMode2D.Impulse);
             }
         }
 
