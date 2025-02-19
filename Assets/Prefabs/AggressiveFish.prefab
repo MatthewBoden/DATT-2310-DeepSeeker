@@ -232,3 +232,4 @@ MonoBehaviour:
   type: 1
   movementSpeed: 1
   acceleration: 1.5
+  deceleration: 0.75
