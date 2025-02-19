@@ -1,3 +1,4 @@
+using System;
 using Enums;
 using UnityEngine;
 
@@ -14,11 +15,13 @@ namespace Fish
         private Vector2 _movementDirection;
         private Rigidbody2D _rigidbody;
         private SpriteRenderer _spriteRenderer;
+        private PlayerController _player;
 
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            _player = FindObjectOfType<PlayerController>();
         }
 
         private void Update()
@@ -33,8 +36,17 @@ namespace Fish
                 _rigidbody.velocity = Vector2.Lerp(_rigidbody.velocity, Vector2.zero, deceleration * Time.deltaTime);
                 return;
             }
-            _rigidbody.velocity = Vector2.Lerp(_rigidbody.velocity, _movementDirection * movementSpeed, acceleration * Time.deltaTime);
 
+            var directionMultiplier = type switch
+            {
+                FishType.Passive => 1,
+                FishType.Aggressive => -1,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+            Vector2 direction = ((transform.position - _player.transform.position) * directionMultiplier).normalized;
+            _rigidbody.velocity = Vector2.Lerp(_rigidbody.velocity, direction * movementSpeed, acceleration * Time.deltaTime);
+
+            // Flip sprite based on movement direction
             _spriteRenderer.flipX = _rigidbody.velocity.x switch
             {
                 > 0.1f => false,
@@ -62,14 +74,6 @@ namespace Fish
         {
             if (!collision.gameObject.CompareTag("Player")) return;
             _isMoving = true;
-            if (type == FishType.Passive)
-            {
-                _movementDirection = (transform.position - collision.transform.position).normalized;
-            }
-            else if (type == FishType.Aggressive)
-            {
-                
-            }
         }
 
         // Circle collider
