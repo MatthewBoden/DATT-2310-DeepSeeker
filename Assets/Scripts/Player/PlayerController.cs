@@ -8,17 +8,17 @@ namespace Player
         [Header("Movement")]
         [SerializeField] private float moveSpeed = 1.5f;
         [SerializeField] private float acceleration = 2f;
-        [SerializeField] private float sprintMultiplier = 1.75f;
+        [SerializeField] private float sprintMultiplier = 1.75f; // Multiplier applied to the player's speed when sprinting
 
         [Header("Stats")]
-        [SerializeField] private float health;
-        [SerializeField] private float stamina;
-        [SerializeField] private float strength;
+        [SerializeField] private float health; // The player's overall durability
+        [SerializeField] private float stamina; // Duration the player can sprint
+        [SerializeField] private float strength; // Damage dealt per attack
 
         [Header("Attack")]
-        [SerializeField] private LayerMask damageableLayer;
-        [SerializeField] private GameObject attackPosition;
-        [SerializeField] private Vector2 attackCapsuleSize;
+        [SerializeField] private LayerMask damageableLayer; // Layers that can be hit by attacks
+        [SerializeField] private GameObject attackPosition; // Reference point for the weapon's point of contact
+        [SerializeField] private Vector2 attackCapsuleSize; // Dimensions of the capsule used to detect hits
 
         // State properties
         public bool IsSprinting { get; private set; }
