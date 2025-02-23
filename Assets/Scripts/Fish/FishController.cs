@@ -1,5 +1,6 @@
 using System;
 using Enums;
+using Player;
 using UnityEngine;
 
 namespace Fish
