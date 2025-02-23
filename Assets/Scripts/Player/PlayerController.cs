@@ -49,6 +49,7 @@ namespace Player
             _moveInput = new Vector2(moveX, moveY).normalized;
 
             if (Input.GetKeyDown(KeyCode.J)) _animator.SetBool(AnimatorParamAttacking, IsAttacking = true);
+            if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
         }
 
         private void FixedUpdate()
