@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3583224735478864770}
   - component: {fileID: 7279843894918641471}
   - component: {fileID: 898680979161421635}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AggressiveFish
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,3 +1,4 @@
+using Interfaces;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private bool isSprinting;
     private bool isHurt;
 
-    [SerializeField] private LayerMask destructibleLayer;
+    [SerializeField] private LayerMask damageableLayer;
     [SerializeField] private GameObject attackPosition;
     [SerializeField] private Vector2 attackCapsuleSize;
 
@@ -85,16 +86,16 @@ public class PlayerController : MonoBehaviour
 
     private void StartAttack()
     {
-        var destructibles = Physics2D.OverlapCapsuleAll(
+        var damageables = Physics2D.OverlapCapsuleAll(
             attackPosition.transform.position,
             attackCapsuleSize,
             CapsuleDirection2D.Horizontal,
             0f,
-            destructibleLayer);
+            damageableLayer);
 
-        foreach (var destructible in destructibles)
+        foreach (var damageable in damageables)
         {
-            Debug.Log("Hit destructible: " + destructible.name);
+            damageable.GetComponent<IDamageable>().Damage(5); // TODO: Set up appropriate impact values
         }
     }
 

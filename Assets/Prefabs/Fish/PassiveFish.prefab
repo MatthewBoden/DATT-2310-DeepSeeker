@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 295739082650649844}
   - component: {fileID: 9090434161226058753}
   - component: {fileID: 6400430689831601065}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PassiveFish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,3 +233,4 @@ MonoBehaviour:
   movementSpeed: 1
   acceleration: 1.5
   deceleration: 0.75
+  pushForce: 0
