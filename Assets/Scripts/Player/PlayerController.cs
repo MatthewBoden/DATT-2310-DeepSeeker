@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,7 +17,10 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool isSprinting;
     private bool isHurt;
-    private 
+
+    [SerializeField] private LayerMask destructibleLayer;
+    [SerializeField] private GameObject attackPosition;
+    [SerializeField] private Vector2 attackCapsuleSize;
 
     void Start()
     {
@@ -33,6 +36,8 @@ public class PlayerController : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
 
         moveInput = new Vector2(moveX, moveY).normalized;
+
+        if (Input.GetKeyDown(KeyCode.J)) animator.SetBool("IsAttacking", true);
     }
 
     void FixedUpdate()
@@ -50,11 +55,11 @@ public class PlayerController : MonoBehaviour
         else if (!Input.GetKey(KeyCode.LeftShift))
             isSprinting = false;
 
-        animator.SetBool("isSprinting", isSprinting);
+        animator.SetBool("IsSprinting", isSprinting);
 
         // Check if moving and update animation
         bool isMoving = rb.velocity.magnitude > 0.1f;
-        animator.SetBool("isMoving", isMoving);
+        animator.SetBool("IsMoving", isMoving);
 
         // Set animation speed based on movement
         animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
@@ -68,13 +73,39 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        animator.SetBool("isHurt", true);
+        animator.SetBool("IsHurt", true);
         CancelInvoke(nameof(ResetHurt));
         Invoke(nameof(ResetHurt), 1f);
     }
 
     private void ResetHurt()
     {
-        animator.SetBool("isHurt", false);
+        animator.SetBool("IsHurt", false);
+    }
+
+    private void StartAttack()
+    {
+        var destructibles = Physics2D.OverlapCapsuleAll(
+            attackPosition.transform.position,
+            attackCapsuleSize,
+            CapsuleDirection2D.Horizontal,
+            0f,
+            destructibleLayer);
+
+        foreach (var destructible in destructibles)
+        {
+            Debug.Log("Hit destructible: " + destructible.name);
+        }
+    }
+
+    private void EndAttack()
+    {
+        animator.SetBool("IsAttacking", false);
+    }
+    
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(attackPosition.transform.position, attackCapsuleSize);
     }
 }
