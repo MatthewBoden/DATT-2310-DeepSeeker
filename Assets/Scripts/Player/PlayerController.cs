@@ -66,9 +66,9 @@ public class PlayerController : MonoBehaviour
 
         // Flip sprite based on movement direction
         if (rb.velocity.x > 0.1f)
-            spriteRenderer.flipX = false;
+            transform.localScale = new Vector3(1, 1, 1);
         else if (rb.velocity.x < -0.1f)
-            spriteRenderer.flipX = true;
+            transform.localScale = new Vector3(-1, 1, 1);
     }
 
     public void TakeDamage(float damage)
