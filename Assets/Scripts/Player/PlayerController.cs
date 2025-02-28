@@ -47,7 +47,6 @@ namespace Player
             var moveX = Input.GetAxisRaw("Horizontal");
             var moveY = Input.GetAxisRaw("Vertical");
             _moveInput = new Vector2(moveX, moveY).normalized;
-
             if (Input.GetKeyDown(KeyCode.J)) _animator.SetBool(AnimatorParamAttacking, IsAttacking = true);
             if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
         }
