@@ -21,7 +21,7 @@ namespace Environment
         private void Update()
         {
             var depth = Mathf.Abs(playerPosition.transform.position.y);
-            var normalizedDepth = Mathf.Clamp01(depth / depthLimit); // Range: [0, 1]
+            var normalizedDepth = Mathf.Clamp01(depth / depthLimit);
             _globalLight.intensity = Mathf.Lerp(maxIntensity, minIntensity, normalizedDepth);
         }
     }
