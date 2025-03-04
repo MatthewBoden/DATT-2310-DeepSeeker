@@ -7,15 +7,18 @@ namespace Ore
     {
         [SerializeField] private float durability;
         [SerializeField] private GameObject mineral;
-        [SerializeField] private int mineralCount;
+        [SerializeField] private int baseMineralCount;
         [SerializeField] private float mineralSpawnRadius;
         [SerializeField] private float mineralSpawnForce;
 
-        public void Damage(float impact)
+        public void Damage(float impact, float fortuneMultiplier)
         {
             if ((durability -= impact) > 0) return;
 
-            for (var i = 0; i < mineralCount; i++)
+            // Determine mineral count based on fortune
+            int finalMineralCount = Mathf.CeilToInt(baseMineralCount * fortuneMultiplier);
+
+            for (var i = 0; i < finalMineralCount; i++)
             {
                 var spawnPosition = transform.position + (Vector3)(Random.insideUnitCircle * mineralSpawnRadius);
                 var randomDirection = Random.insideUnitCircle.normalized;

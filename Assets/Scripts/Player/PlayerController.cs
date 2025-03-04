@@ -201,6 +201,18 @@ namespace Player
         {
             IsAttacking = true;
 
+            // TODO: Implement script for attacking fish
+        }
+
+        private void EndAttack()
+        {
+            _animator.SetBool(AnimatorParamAttacking, IsAttacking = false);
+        }
+
+        private void StartMine()
+        {
+            IsMining = true;
+
             var damageables = Physics2D.OverlapCapsuleAll(
                 attackPosition.transform.position,
                 attackCapsuleSize,
@@ -211,12 +223,13 @@ namespace Player
             foreach (var damageable in damageables)
             {
                 damageable.GetComponent<IDamageable>()?.Damage(5f);
+                damageable.GetComponent<IDamageable>().Damage(5, fortune); // TODO: Set up appropriate impact values
             }
         }
 
-        private void EndAttack()
+        private void EndMine()
         {
-            _animator.SetBool(AnimatorParamAttacking, IsAttacking = false);
+            _animator.SetBool(AnimatorParamMining, IsMining = false);
         }
 
 

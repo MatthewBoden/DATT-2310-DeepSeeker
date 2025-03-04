@@ -11,34 +11,11 @@ public class InventoryManager : MonoBehaviour
     public InventorySlot[] inventorySlots;
     public GameObject InventoryItemPrefab;
 
-    int selectedSlot = -1;
-
     private void Awake()
     {
         instance = this;
     }
 
-    private void Start()
-    {
-        ChangeSelectedSlot(0);
-    }
-
-    private void Update()
-    {
-        if (Input.inputString != null) {
-            bool isNumber = int.TryParse(Input.inputString, out int number);
-            if (isNumber && number > 0 && number < 3) {
-                ChangeSelectedSlot(number + (inventorySlots.Length - 3));
-            }  
-        }
-    }
-
-    void ChangeSelectedSlot(int newValue) {
-        if (selectedSlot >= 0) inventorySlots[selectedSlot].Deselect();
-
-        inventorySlots[newValue].Select();
-        selectedSlot = newValue;
-    }
     public bool AddItem(Item item)
     {
         // If any slot has the same item with count lower than max, they will be stacked
@@ -73,14 +50,5 @@ public class InventoryManager : MonoBehaviour
         GameObject newItemGo = Instantiate(InventoryItemPrefab, slot.transform);
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
         inventoryItem.InitializeItem(item);
-    }
-
-    public Item GetSelectedItem() {
-        InventorySlot slot = inventorySlots[selectedSlot];
-        InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-        if (itemInSlot != null) {
-            return itemInSlot.item;
-        } 
-        return null;
     }
 }
