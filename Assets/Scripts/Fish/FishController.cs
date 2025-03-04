@@ -21,7 +21,6 @@ namespace Fish
         private PlayerController _player;
         private Rigidbody2D _playerRigidbody;
         private StatusBarController _statusBarController;
-        private static HealthManager healthManager;
 
         private void Start()
         {
@@ -30,8 +29,6 @@ namespace Fish
             _player = FindObjectOfType<PlayerController>();
             _playerRigidbody = _player.GetComponent<Rigidbody2D>();
             _statusBarController = GetComponentInChildren<StatusBarController>();
-
-            healthManager = FindObjectOfType<HealthManager>();
 
         }
 

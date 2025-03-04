@@ -15,11 +15,18 @@ namespace Player
         [Header("Stats")]
         [SerializeField] private float health = 20f;
         [SerializeField] private float maxHealth = 20f;
-        [SerializeField] private float stamina;
         [SerializeField] private float strength;
+        [SerializeField] private float stamina = 100f;
+        [SerializeField] private float maxStamina = 100f; 
+        [SerializeField] private float staminaDrainRate = 10f; // How much stamina drains per second when sprinting
+        [SerializeField] private float staminaRegenRate = 5f;  // How much stamina regenerates per second
+        [SerializeField] private float staminaRegenDelay = 2f; // Delay before stamina starts regenerating
+
+        private float lastSprintTime;
 
         [Header("UI")]
         [SerializeField] private Image healthBar;
+        [SerializeField] private Image staminaBar;
 
         [Header("Attack")]
         [SerializeField] private LayerMask damageableLayer;
@@ -50,6 +57,9 @@ namespace Player
             // Ensure health starts at max
             health = maxHealth;
             UpdateHealthBar();
+
+            stamina = maxStamina;
+            UpdateStaminaBar();
         }
 
         private void Update()
@@ -62,6 +72,16 @@ namespace Player
             if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
 
             if (health <= 0) Die();
+
+            if (IsSprinting && stamina > 0)
+            {
+                UseStamina(staminaDrainRate * Time.deltaTime);
+                lastSprintTime = Time.time; // Store last sprint time
+            }
+            else if (!IsSprinting && Time.time > lastSprintTime + staminaRegenDelay)
+            {
+                RegenerateStamina();
+            }
         }
 
         private void FixedUpdate()
@@ -71,12 +91,23 @@ namespace Player
             _rigidbody.velocity = Vector2.Lerp(_rigidbody.velocity, targetVelocity, acceleration * Time.deltaTime);
 
             // Sprinting logic
-            if ((Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.A)) ||
-                (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.D)))
+            if ((Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.A) && stamina > 0) ||
+                (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.D) && stamina > 0))
+            {
                 IsSprinting = true;
-            else if (!Input.GetKey(KeyCode.LeftShift))
+            }
+            else
+            {
                 IsSprinting = false;
+            }
 
+            // Stop sprint animation if stamina is 0
+            if (stamina <= 0)
+            {
+                IsSprinting = false;
+            }
+
+            // Update animator
             _animator.SetBool(AnimatorParamIsSprinting, IsSprinting);
 
             // Movement animations
@@ -118,6 +149,31 @@ namespace Player
             if (healthBar != null)
             {
                 healthBar.fillAmount = health / maxHealth;
+            }
+        }
+
+        private void UseStamina(float amount)
+        {
+            stamina -= amount;
+            stamina = Mathf.Clamp(stamina, 0, maxStamina);
+            UpdateStaminaBar();
+        }
+
+        private void RegenerateStamina()
+        {
+            if (stamina < maxStamina)
+            {
+                stamina += staminaRegenRate * Time.deltaTime;
+                stamina = Mathf.Clamp(stamina, 0, maxStamina);
+                UpdateStaminaBar();
+            }
+        }
+
+        private void UpdateStaminaBar()
+        {
+            if (staminaBar != null)
+            {
+                staminaBar.fillAmount = stamina / maxStamina;
             }
         }
 
