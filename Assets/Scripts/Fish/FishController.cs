@@ -1,6 +1,7 @@
 using System;
 using Enums;
 using Player;
+using UI;
 using UnityEngine;
 
 namespace Fish
@@ -19,6 +20,7 @@ namespace Fish
         private SpriteRenderer _spriteRenderer;
         private PlayerController _player;
         private Rigidbody2D _playerRigidbody;
+        private StatusBarController _statusBarController;
 
         private void Start()
         {
@@ -26,6 +28,8 @@ namespace Fish
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _player = FindObjectOfType<PlayerController>();
             _playerRigidbody = _player.GetComponent<Rigidbody2D>();
+            _statusBarController = GetComponentInChildren<StatusBarController>();
+
         }
 
         private void Update()
@@ -62,16 +66,16 @@ namespace Fish
         // Box collider
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (!collision.gameObject.CompareTag("Player")) return;
+            if (!collision.gameObject.CompareTag("Player") && _player.IsAttacking) return;
             if (type == FishType.Passive)
             {
                 Destroy(gameObject);
             }
             else if (type == FishType.Aggressive)
             {
-                _player.TakeDamage(0);
                 var direction = (_player.transform.position - transform.position).normalized;
                 _playerRigidbody.AddForce(direction * pushForce, ForceMode2D.Impulse);
+                _player.TakeDamage(5.0f); // damages player
             }
         }
 
