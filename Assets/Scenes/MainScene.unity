@@ -2297,7 +2297,7 @@ MonoBehaviour:
   staminaRegenRate: 5
   staminaRegenDelay: 2
   healthBar: {fileID: 1647387672}
-  staminaBar: {fileID: 0}
+  staminaBar: {fileID: 343894867}
   damageableLayer:
     serializedVersion: 2
     m_Bits: 64
