@@ -1,5 +1,7 @@
 using Interfaces;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Player
 {
@@ -8,30 +10,34 @@ namespace Player
         [Header("Movement")]
         [SerializeField] private float moveSpeed = 1.5f;
         [SerializeField] private float acceleration = 2f;
-        [SerializeField] private float sprintMultiplier = 1.75f; // Multiplier applied to the player's speed when sprinting
+        [SerializeField] private float sprintMultiplier = 1.75f;
 
         [Header("Stats")]
-        [SerializeField] private float health; // The player's overall durability
-        [SerializeField] private float stamina; // Duration the player can sprint
-        [SerializeField] private float strength; // Damage dealt per attack
+        [SerializeField] private float health = 20f;
+        [SerializeField] private float maxHealth = 20f;
+        [SerializeField] private float stamina;
+        [SerializeField] private float strength;
+
+        [Header("UI")]
+        [SerializeField] private Image healthBar;
 
         [Header("Attack")]
-        [SerializeField] private LayerMask damageableLayer; // Layers that can be hit by attacks
-        [SerializeField] private GameObject attackPosition; // Reference point for the weapon's point of contact
-        [SerializeField] private Vector2 attackCapsuleSize; // Dimensions of the capsule used to detect hits
+        [SerializeField] private LayerMask damageableLayer;
+        [SerializeField] private GameObject attackPosition;
+        [SerializeField] private Vector2 attackCapsuleSize;
 
         // State properties
         public bool IsSprinting { get; private set; }
         public bool IsHurt { get; private set; }
         public bool IsAttacking { get; private set; }
-        
+
         // Animation parameters
         private static readonly int AnimatorParamAttacking = Animator.StringToHash("IsAttacking");
         private static readonly int AnimatorParamIsSprinting = Animator.StringToHash("IsSprinting");
         private static readonly int AnimatorParamIsMoving = Animator.StringToHash("IsMoving");
         private static readonly int AnimatorParamXVelocity = Animator.StringToHash("xVelocity");
         private static readonly int AnimatorParamIsHurt = Animator.StringToHash("IsHurt");
-        
+
         private Rigidbody2D _rigidbody;
         private Vector2 _moveInput;
         private Animator _animator;
@@ -40,6 +46,10 @@ namespace Player
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
+
+            // Ensure health starts at max
+            health = maxHealth;
+            UpdateHealthBar();
         }
 
         private void Update()
@@ -47,8 +57,11 @@ namespace Player
             var moveX = Input.GetAxisRaw("Horizontal");
             var moveY = Input.GetAxisRaw("Vertical");
             _moveInput = new Vector2(moveX, moveY).normalized;
+
             if (Input.GetKeyDown(KeyCode.J)) _animator.SetBool(AnimatorParamAttacking, IsAttacking = true);
             if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
+
+            if (health <= 0) Die();
         }
 
         private void FixedUpdate()
@@ -57,7 +70,7 @@ namespace Player
             var targetVelocity = _moveInput * currentSpeed;
             _rigidbody.velocity = Vector2.Lerp(_rigidbody.velocity, targetVelocity, acceleration * Time.deltaTime);
 
-            // Check if player is sprinting
+            // Sprinting logic
             if ((Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.A)) ||
                 (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.D)))
                 IsSprinting = true;
@@ -66,12 +79,12 @@ namespace Player
 
             _animator.SetBool(AnimatorParamIsSprinting, IsSprinting);
 
-            // Check if moving and update animation
+            // Movement animations
             var isMoving = _rigidbody.velocity.magnitude > 0.1f;
             _animator.SetBool(AnimatorParamIsMoving, isMoving);
             _animator.SetFloat(AnimatorParamXVelocity, Mathf.Abs(_rigidbody.velocity.x));
 
-            // Flip game object based on movement direction
+            // Flip player sprite
             transform.localScale = _rigidbody.velocity.x switch
             {
                 > 0.1f => new Vector3(1, 1, 1),
@@ -80,11 +93,38 @@ namespace Player
             };
         }
 
-        public void TakeDamage(float impact)
+        public void TakeDamage(float damage)
         {
+            health -= damage;
+            health = Mathf.Clamp(health, 0, maxHealth);
+            UpdateHealthBar();
+
+            Debug.Log("Damage Taken: " + damage + " | Health Remaining: " + health);
+
             _animator.SetBool(AnimatorParamIsHurt, IsHurt = true);
             CancelInvoke(nameof(ResetHurt));
             Invoke(nameof(ResetHurt), 1f);
+        }
+
+        public void Heal(float healingAmount)
+        {
+            health += healingAmount;
+            health = Mathf.Clamp(health, 0, maxHealth);
+            UpdateHealthBar();
+        }
+
+        private void UpdateHealthBar()
+        {
+            if (healthBar != null)
+            {
+                healthBar.fillAmount = health / maxHealth;
+            }
+        }
+
+        private void Die()
+        {
+            Debug.Log("Player Died! Restarting Level...");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         private void ResetHurt()
@@ -105,7 +145,7 @@ namespace Player
 
             foreach (var damageable in damageables)
             {
-                damageable.GetComponent<IDamageable>().Damage(5); // TODO: Set up appropriate impact values
+                damageable.GetComponent<IDamageable>()?.Damage(5f);
             }
         }
 
