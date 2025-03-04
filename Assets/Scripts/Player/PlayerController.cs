@@ -39,9 +39,11 @@ namespace Player
         public bool IsSprinting { get; private set; }
         public bool IsHurt { get; private set; }
         public bool IsAttacking { get; private set; }
-
+        public bool IsMining { get; private set; }
+        
         // Animation parameters
         private static readonly int AnimatorParamAttacking = Animator.StringToHash("IsAttacking");
+        private static readonly int AnimatorParamMining = Animator.StringToHash("IsMining");
         private static readonly int AnimatorParamIsSprinting = Animator.StringToHash("IsSprinting");
         private static readonly int AnimatorParamIsMoving = Animator.StringToHash("IsMoving");
         private static readonly int AnimatorParamXVelocity = Animator.StringToHash("xVelocity");
@@ -71,6 +73,7 @@ namespace Player
             _moveInput = new Vector2(moveX, moveY).normalized;
 
             if (Input.GetKeyDown(KeyCode.J)) _animator.SetBool(AnimatorParamAttacking, IsAttacking = true);
+            if (Input.GetKeyDown(KeyCode.K)) _animator.SetBool(AnimatorParamMining, IsMining = true);
             if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
 
             if (health <= 0) Die();
@@ -215,6 +218,7 @@ namespace Player
         {
             _animator.SetBool(AnimatorParamAttacking, IsAttacking = false);
         }
+
 
         private void OnDrawGizmosSelected()
         {
