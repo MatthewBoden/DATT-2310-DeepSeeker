@@ -15,12 +15,14 @@ namespace Player
         [Header("Stats")]
         [SerializeField] private float health = 20f;
         [SerializeField] private float maxHealth = 20f;
+        private float healthRegenRate = 0.25f;  // How much stamina regenerates per second
+        private float healthRegenDelay = 3f; // Delay before stamina starts regenerating
         [SerializeField] private float strength;
         [SerializeField] private float stamina = 100f;
         [SerializeField] private float maxStamina = 100f; 
-        [SerializeField] private float staminaDrainRate = 10f; // How much stamina drains per second when sprinting
-        [SerializeField] private float staminaRegenRate = 5f;  // How much stamina regenerates per second
-        [SerializeField] private float staminaRegenDelay = 2f; // Delay before stamina starts regenerating
+        private float staminaDrainRate = 10f; // How much stamina drains per second when sprinting
+        private float staminaRegenRate = 5f;  // How much stamina regenerates per second
+        private float staminaRegenDelay = 2f; // Delay before stamina starts regenerating
 
         private float lastSprintTime;
 
@@ -82,6 +84,7 @@ namespace Player
             {
                 RegenerateStamina();
             }
+            Heal(); 
         }
 
         private void FixedUpdate()
@@ -137,11 +140,14 @@ namespace Player
             Invoke(nameof(ResetHurt), 1f);
         }
 
-        public void Heal(float healingAmount)
+        private void Heal()
         {
-            health += healingAmount;
-            health = Mathf.Clamp(health, 0, maxHealth);
-            UpdateHealthBar();
+            if (health < maxHealth)
+            {
+                health += healthRegenRate * Time.deltaTime;
+                health = Mathf.Clamp(health, 0, maxHealth);
+                UpdateHealthBar();
+            }
         }
 
         private void UpdateHealthBar()
