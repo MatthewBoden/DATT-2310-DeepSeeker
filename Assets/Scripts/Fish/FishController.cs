@@ -1,6 +1,7 @@
 using System;
 using Enums;
 using Player;
+using UI;
 using UnityEngine;
 
 namespace Fish
@@ -12,6 +13,7 @@ namespace Fish
         [SerializeField] private float acceleration;
         [SerializeField] private float deceleration;
         [SerializeField] private float pushForce;
+        [SerializeField] private GameObject statusBar;
         
         private bool _isMoving;
         private Vector2 _movementDirection;
@@ -19,6 +21,7 @@ namespace Fish
         private SpriteRenderer _spriteRenderer;
         private PlayerController _player;
         private Rigidbody2D _playerRigidbody;
+        private StatusBarController _statusBarController;
 
         private void Start()
         {
@@ -26,6 +29,7 @@ namespace Fish
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _player = FindObjectOfType<PlayerController>();
             _playerRigidbody = _player.GetComponent<Rigidbody2D>();
+            _statusBarController = statusBar?.GetComponent<StatusBarController>();
         }
 
         private void Update()
