@@ -13,7 +13,6 @@ namespace Fish
         [SerializeField] private float acceleration;
         [SerializeField] private float deceleration;
         [SerializeField] private float pushForce;
-        [SerializeField] private GameObject statusBar;
         
         private bool _isMoving;
         private Vector2 _movementDirection;
@@ -29,7 +28,7 @@ namespace Fish
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _player = FindObjectOfType<PlayerController>();
             _playerRigidbody = _player.GetComponent<Rigidbody2D>();
-            _statusBarController = statusBar?.GetComponent<StatusBarController>();
+            _statusBarController = GetComponentInChildren<StatusBarController>();
         }
 
         private void Update()
