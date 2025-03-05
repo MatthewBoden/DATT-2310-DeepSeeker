@@ -19,7 +19,8 @@ namespace Player
         private float healthRegenDelay = 3f; // Delay before stamina starts regenerating
         [SerializeField] private float strength;
         [SerializeField] private float stamina = 100f;
-        [SerializeField] private float maxStamina = 100f; 
+        [SerializeField] private float maxStamina = 100f;
+        [SerializeField] private float fortune = 1.0f;
         private float staminaDrainRate = 10f; // How much stamina drains per second when sprinting
         private float staminaRegenRate = 5f;  // How much stamina regenerates per second
         private float staminaRegenDelay = 2f; // Delay before stamina starts regenerating
@@ -222,7 +223,6 @@ namespace Player
 
             foreach (var damageable in damageables)
             {
-                damageable.GetComponent<IDamageable>()?.Damage(5f);
                 damageable.GetComponent<IDamageable>().Damage(5, fortune); // TODO: Set up appropriate impact values
             }
         }
