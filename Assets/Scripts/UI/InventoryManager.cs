@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -73,6 +73,21 @@ public class InventoryManager : MonoBehaviour
 
         return false; // Not enough gems
     }
+
+    public int GetGemCount()
+    {
+        int gemCount = 0;
+        foreach (var slot in inventorySlots)
+        {
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            if (itemInSlot != null && itemInSlot.item.type == Item.ItemType.ore)
+            {
+                gemCount += itemInSlot.count;
+            }
+        }
+        return gemCount;
+    }
+
 
 
     void SpawnNewItem(Item item, InventorySlot slot) { 
