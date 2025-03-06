@@ -55,7 +55,7 @@ public class UpgradeUI : MonoBehaviour
         if (strengthUpgrades < maxUpgradesPerStat && playerController.UpgradeStat("strength", gemCostPerUpgrade))
         {
             strengthUpgrades++;
-            strengthText.text = "" + strengthUpgrades;
+            strengthText.text = strengthUpgrades + "/" + maxUpgradesPerStat;
             UpdateGemCount();
         }
     }
@@ -65,7 +65,7 @@ public class UpgradeUI : MonoBehaviour
         if (healthUpgrades < maxUpgradesPerStat && playerController.UpgradeStat("maxHealth", gemCostPerUpgrade))
         {
             healthUpgrades++;
-            healthText.text = "" + healthUpgrades;
+            healthText.text = healthUpgrades + "/" + maxUpgradesPerStat;
             UpdateGemCount();
         }
     }
@@ -75,7 +75,7 @@ public class UpgradeUI : MonoBehaviour
         if (staminaUpgrades < maxUpgradesPerStat && playerController.UpgradeStat("maxStamina", gemCostPerUpgrade))
         {
             staminaUpgrades++;
-            staminaText.text = "" + staminaUpgrades;
+            staminaText.text = staminaUpgrades + "/" + maxUpgradesPerStat;
             UpdateGemCount();
         }
     }
@@ -85,7 +85,7 @@ public class UpgradeUI : MonoBehaviour
         if (flashlightUpgrades < maxUpgradesPerStat && playerController.UpgradeStat("flashlightStat", gemCostPerUpgrade))
         {
             flashlightUpgrades++;
-            flashlightText.text = "" + flashlightUpgrades;
+            flashlightText.text = flashlightUpgrades + "/" + maxUpgradesPerStat;
             UpdateGemCount();
         }
     }
@@ -95,7 +95,7 @@ public class UpgradeUI : MonoBehaviour
         if (fortuneUpgrades < maxUpgradesPerStat && playerController.UpgradeStat("fortune", gemCostPerUpgrade))
         {
             fortuneUpgrades++;
-            fortuneText.text = "" + fortuneUpgrades;
+            fortuneText.text = fortuneUpgrades + "/" + maxUpgradesPerStat;
             UpdateGemCount();
         }
     }
