@@ -46,6 +46,35 @@ public class InventoryManager : MonoBehaviour
         return false; // If inventory is full, will not add to inventory
     }
 
+    public bool RemoveGems(int amount)
+    {
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            InventorySlot slot = inventorySlots[i];
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+
+            if (itemInSlot != null && itemInSlot.item.type == Item.ItemType.ore)
+            {
+                if (itemInSlot.count >= amount)
+                {
+                    itemInSlot.count -= amount;
+                    if (itemInSlot.count == 0)
+                    {
+                        Destroy(itemInSlot.gameObject); // Remove from inventory if empty
+                    }
+                    else
+                    {
+                        itemInSlot.RefreshCount();
+                    }
+                    return true; // Gems successfully removed
+                }
+            }
+        }
+
+        return false; // Not enough gems
+    }
+
+
     void SpawnNewItem(Item item, InventorySlot slot) { 
         GameObject newItemGo = Instantiate(InventoryItemPrefab, slot.transform);
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();

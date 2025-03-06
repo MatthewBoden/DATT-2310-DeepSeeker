@@ -1,4 +1,4 @@
-using Interfaces;
+﻿using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -21,6 +21,7 @@ namespace Player
         [SerializeField] private float stamina = 100f;
         [SerializeField] private float maxStamina = 100f;
         [SerializeField] private float fortune = 1.0f;
+        [SerializeField] private float flashlightStat;
         private float staminaDrainRate = 10f; // How much stamina drains per second when sprinting
         private float staminaRegenRate = 5f;  // How much stamina regenerates per second
         private float staminaRegenDelay = 2f; // Delay before stamina starts regenerating
@@ -53,11 +54,13 @@ namespace Player
         private Rigidbody2D _rigidbody;
         private Vector2 _moveInput;
         private Animator _animator;
+        private InventoryManager _inventoryManager;
 
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
+            _inventoryManager = FindObjectOfType<InventoryManager>();
 
             // Ensure health starts at max
             health = maxHealth;
@@ -232,11 +235,61 @@ namespace Player
             _animator.SetBool(AnimatorParamMining, IsMining = false);
         }
 
+        public bool UpgradeStat(string statName, int gemCost)
+        {
+            if (_inventoryManager == null)
+            {
+                Debug.LogError("InventoryManager not found!");
+                return false;
+            }
+
+            if (_inventoryManager.RemoveGems(gemCost))
+            {
+                switch (statName)
+                {
+                    case "strength":
+                        strength += 2f; // Values will probably need to be finalized
+                        break;
+                    case "maxHealth":
+                        maxHealth += 5f;
+                        health = maxHealth;
+                        UpdateHealthBar();
+                        break;
+                    case "maxStamina":
+                        maxStamina += 25f;
+                        stamina = maxStamina;
+                        UpdateStaminaBar();
+                        break;
+                    case "flashlightStat":
+                        flashlightStat += 0.5f;
+                        Debug.Log("Flashlight stat upgraded! New value: " + flashlightStat);
+                        break;
+                    case "fortune":
+                        fortune += 0.5f;
+                        break;
+                    default:
+                        Debug.LogError("Invalid stat name: " + statName);
+                        return false;
+                }
+
+                Debug.Log($"{statName} upgraded!");
+                return true;
+            }
+
+            Debug.Log("Not enough gems!");
+            return false;
+        }
+
 
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(attackPosition.transform.position, attackCapsuleSize);
+        }
+
+        public float GetFlashlightStat()
+        {
+            return flashlightStat;
         }
     }
 }
