@@ -193,7 +193,7 @@ namespace Player
         private void Die()
         {
             Debug.Log("Player Died! Restarting Level...");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene("GameOverScene");
         }
 
         private void ResetHurt()
