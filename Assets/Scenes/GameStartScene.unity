@@ -510,10 +510,10 @@ RectTransform:
   m_Father: {fileID: 99793029}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -135}
-  m_SizeDelta: {x: 273.1207, y: 51.3796}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 1, y: 32.02008}
+  m_SizeDelta: {x: 1018.0811, y: 177.4818}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1096898612
 MonoBehaviour:
@@ -562,8 +562,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -598,7 +598,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 39.54358, z: 0, w: 73.32089}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -645,10 +645,10 @@ RectTransform:
   m_Father: {fileID: 99793029}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 519, y: 292}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 1, y: -7}
+  m_SizeDelta: {x: 14.6174, y: 8.4554}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1267211047
 MonoBehaviour:
@@ -723,10 +723,10 @@ RectTransform:
   m_Father: {fileID: 99793029}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 236.37964, y: 122.06946}
-  m_SizeDelta: {x: 37.2123, y: 36.8982}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -84, y: -83}
+  m_SizeDelta: {x: 138.71204, y: 137.54132}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1473703730
 MonoBehaviour:
@@ -772,7 +772,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 851945006}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ScenesManager, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
