@@ -5,16 +5,32 @@ using UnityEngine.SceneManagement;
 
 public class ScenesManager : MonoBehaviour
 {
+    public GameObject fishContainer;
 
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "GameStartScene")
+        if (SceneManager.GetActiveScene().name == "MainScene")
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                LoadMainScene();
-            }
+            CheckWinCondition();
         }
+
+        if (SceneManager.GetActiveScene().name == "GameStartScene" && Input.GetKeyDown(KeyCode.Space))
+        {
+            LoadMainScene();
+        }
+    }
+
+    public void CheckWinCondition()
+    {
+        if (fishContainer.transform.childCount == 0) 
+        {
+            LoadWinScene();
+        }
+    }
+
+    public void LoadStartScene()
+    {
+        SceneManager.LoadScene("GameStartScene");
     }
 
     public void LoadMainScene()
@@ -22,9 +38,9 @@ public class ScenesManager : MonoBehaviour
         SceneManager.LoadScene("MainScene");
     }
 
-    public void LoadStartScene()
+    public void LoadGameOverScene()
     {
-        SceneManager.LoadScene("GameStartScene");
+        SceneManager.LoadScene("GameOverScene");
     }
 
     public void LoadWinScene()
@@ -36,6 +52,4 @@ public class ScenesManager : MonoBehaviour
     {
         Application.Quit();
     }
-
-
 }
