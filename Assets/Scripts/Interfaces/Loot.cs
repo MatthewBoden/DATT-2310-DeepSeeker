@@ -25,7 +25,7 @@ public class Loot : MonoBehaviour
             if (result)
             {
                 Debug.Log($"{itemToLoot.name} added to inventory!");
-                Destroy(gameObject);
+                if (!gameObject.name.Contains("Fish")) Destroy(gameObject);
             }
             else
             {
