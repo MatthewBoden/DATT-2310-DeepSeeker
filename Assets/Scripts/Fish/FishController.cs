@@ -118,7 +118,7 @@ namespace Fish
             var directionX = _delayedVelocity.x > 0 ? -1 : 1;
             if (type == FishType.Aggressive) _rigidbody.velocity = new Vector2(directionX, _rigidbody.velocity.y);
             _isMoving = false;
-            _statusBarController.Decrease(3); // TODO: Assign proper impact value
+            _statusBarController.Decrease(impact); // TODO: Assign proper impact value
 
             if (_statusBarController.Amount <= 0)
             {

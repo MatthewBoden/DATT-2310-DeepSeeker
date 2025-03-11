@@ -213,9 +213,14 @@ namespace Player
                 0f,
                 damageableLayer);
 
+            Debug.Log("********************");
             foreach (var detectedCollider in detectedColliders)
             {
+                Debug.Log(detectedCollider.gameObject.name);
                 if (detectedCollider.isTrigger) continue;
+                
+                Debug.Log("++++++++++");
+                Debug.Log(detectedCollider.gameObject.name);
                 
                 var damageable = detectedCollider.GetComponent<IDamageable>();
                 if (damageable is FishController fish)
@@ -256,7 +261,7 @@ namespace Player
                 }
                 else
                 {
-                    damageable.Damage(5, fortune);
+                    damageable.Damage(3, fortune);
                 }
             }
         }
