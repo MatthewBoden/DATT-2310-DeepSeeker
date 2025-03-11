@@ -23,11 +23,14 @@ namespace Fish
         private SpriteRenderer _spriteRenderer;
         private Color _originalColor;
         private PlayerController _player;
+        private Animator _playerAnimator;
         private Rigidbody2D _playerRigidbody;
         private StatusBarController _statusBarController;
         private Queue<Vector2> _velocityHistory = new Queue<Vector2>();
         private float _trackDuration = 0.1f;
         private Vector2 _delayedVelocity;
+        
+        private static readonly int PlayerAnimatorParamAttacking = Animator.StringToHash("IsAttacking");
 
         public bool IsHurting { get; private set; }
 
@@ -37,6 +40,7 @@ namespace Fish
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _originalColor = _spriteRenderer.color;
             _player = FindObjectOfType<PlayerController>();
+            _playerAnimator = _player.GetComponent<Animator>();
             _playerRigidbody = _player.GetComponent<Rigidbody2D>();
             _statusBarController = GetComponentInChildren<StatusBarController>();
 
@@ -83,18 +87,12 @@ namespace Fish
         // Box collider
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (!collision.gameObject.CompareTag("Player")) return;
-            if (type == FishType.Passive)
-            {
-                Destroy(gameObject);
-            }
-            else if (type == FishType.Aggressive)
-            {
-                if (IsHurting) return;
-                var direction = (_player.transform.position - transform.position).normalized;
-                if (IsHurting) _playerRigidbody.AddForce(direction * pushForce, ForceMode2D.Impulse);
-                _player.TakeDamage(5.0f); // damages player
-            }
+            if (!collision.gameObject.CompareTag("Player") || IsHurting) return;
+            
+            var direction = (_player.transform.position - transform.position).normalized;
+            _playerAnimator.SetBool(PlayerAnimatorParamAttacking, false);
+            _playerRigidbody.AddForce(direction * pushForce, ForceMode2D.Impulse);
+            _player.TakeDamage(5.0f);
         }
 
         // Circle collider
@@ -118,8 +116,7 @@ namespace Fish
             _spriteRenderer.color = Color.red;
             
             var directionX = _delayedVelocity.x > 0 ? -1 : 1;
-            // _rigidbody.AddForce(new Vector2(directionX * 2.5f, 0), ForceMode2D.Impulse);
-            _rigidbody.velocity = new Vector2(directionX, _rigidbody.velocity.y);
+            if (type == FishType.Aggressive) _rigidbody.velocity = new Vector2(directionX, _rigidbody.velocity.y);
             _isMoving = false;
             _statusBarController.Decrease(3); // TODO: Assign proper impact value
 
