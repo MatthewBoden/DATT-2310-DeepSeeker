@@ -1,4 +1,5 @@
-﻿using Interfaces;
+﻿using Fish;
+using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -212,7 +213,27 @@ namespace Player
         {
             IsAttacking = true;
 
-            // TODO: Implement script for attacking fish
+            var detectedColliders = Physics2D.OverlapCapsuleAll(
+                attackPosition.transform.position,
+                attackCapsuleSize,
+                CapsuleDirection2D.Horizontal,
+                0f,
+                damageableLayer);
+
+            foreach (var detectedCollider in detectedColliders)
+            {
+                if (detectedCollider.isTrigger) continue;
+                
+                var damageable = detectedCollider.GetComponent<IDamageable>();
+                if (damageable is FishController fish)
+                {
+                    damageable.Damage(3, fortune);
+                }
+                else
+                {
+                    // Leave it for now
+                }
+            }
         }
 
         private void EndAttack()
@@ -224,16 +245,26 @@ namespace Player
         {
             IsMining = true;
 
-            var damageables = Physics2D.OverlapCapsuleAll(
+            var detectedColliders = Physics2D.OverlapCapsuleAll(
                 attackPosition.transform.position,
                 attackCapsuleSize,
                 CapsuleDirection2D.Horizontal,
                 0f,
                 damageableLayer);
 
-            foreach (var damageable in damageables)
+            foreach (var detectedCollider in detectedColliders)
             {
-                damageable.GetComponent<IDamageable>().Damage(5, fortune); // TODO: Set up appropriate impact values
+                if (detectedCollider.isTrigger) continue;
+
+                var damageable = detectedCollider.GetComponent<IDamageable>();
+                if (damageable is FishController fish)
+                {
+                    damageable.Damage(1, fortune);
+                }
+                else
+                {
+                    damageable.Damage(3, fortune);
+                }
             }
         }
 

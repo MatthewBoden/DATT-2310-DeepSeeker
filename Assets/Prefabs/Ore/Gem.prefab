@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2168740520375656239}
   - component: {fileID: 1530740449176461441}
   - component: {fileID: 6155747789361542042}
-  - component: {fileID: 6281773006624831917}
   m_Layer: 0
   m_Name: Gem
   m_TagString: Untagged
@@ -34,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1524192054971824172
 SpriteRenderer:
@@ -162,17 +161,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: effccdd5086d497bac782856e10805b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6281773006624831917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3938961323054963160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5eb057a1527ffe43a082489aa53318c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryManager: {fileID: 0}
   itemToLoot: {fileID: 11400000, guid: 3d6f7c32215e2eb448980449a1216b8f, type: 2}

@@ -1408,6 +1408,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: itemToLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c39b0412fd7e4a40b6baadab51edb88, type: 2}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1622405152}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1662,6 +1670,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: itemToLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c39b0412fd7e4a40b6baadab51edb88, type: 2}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1622405152}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2103,6 +2119,11 @@ Transform:
   - {fileID: 596542915}
   - {fileID: 1552296656}
   - {fileID: 897343719}
+  - {fileID: 1689697368}
+  - {fileID: 1690898285}
+  - {fileID: 1147453529}
+  - {fileID: 478702824}
+  - {fileID: 693774938}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2490,8 +2511,16 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 582071660}
+    m_TransformParent: {fileID: 396647218}
     m_Modifications:
+    - target: {fileID: 898680979161421635, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
+      propertyPath: itemToLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: 7f1d29609bbb3a94ea3a06443c7f9719, type: 2}
+    - target: {fileID: 898680979161421635, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1622405152}
     - target: {fileID: 7701746928271869969, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_Name
       value: AggressiveFish_1 (3)
@@ -2506,15 +2535,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8454437800302077518, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.695036
+      value: -3.8499997
       objectReference: {fileID: 0}
     - target: {fileID: 8454437800302077518, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.793847
+      value: -17.96
       objectReference: {fileID: 0}
     - target: {fileID: 8454437800302077518, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1391826
+      value: -0.09796727
       objectReference: {fileID: 0}
     - target: {fileID: 8454437800302077518, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3528,7 +3557,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   attackPosition: {fileID: 2098611782}
-  attackCapsuleSize: {x: 0.65, y: 0.1}
+  attackCapsuleSize: {x: 0.6, y: 0.1}
   inventoryMenu: {fileID: 23558533}
   upgradeMenu: {fileID: 611437287}
 --- !u!70 &519524009
@@ -3929,42 +3958,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 562509671}
   m_CullTransparentMesh: 1
---- !u!1 &582071659
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 582071660}
-  m_Layer: 0
-  m_Name: AgressiveFish
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &582071660
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 582071659}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.760884, y: -13.7750635, z: -0.1391826}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1689697368}
-  - {fileID: 1690898285}
-  - {fileID: 1147453529}
-  - {fileID: 478702824}
-  - {fileID: 693774938}
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &591245645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4029,6 +4022,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: itemToLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c39b0412fd7e4a40b6baadab51edb88, type: 2}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1622405152}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4103,6 +4104,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: itemToLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c39b0412fd7e4a40b6baadab51edb88, type: 2}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1622405152}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4215,6 +4224,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: itemToLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c39b0412fd7e4a40b6baadab51edb88, type: 2}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1622405152}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4595,8 +4612,16 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 582071660}
+    m_TransformParent: {fileID: 396647218}
     m_Modifications:
+    - target: {fileID: 898680979161421635, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
+      propertyPath: itemToLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: 7f1d29609bbb3a94ea3a06443c7f9719, type: 2}
+    - target: {fileID: 898680979161421635, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1622405152}
     - target: {fileID: 7701746928271869969, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_Name
       value: AggressiveFish_1 (4)
@@ -4611,15 +4636,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8454437800302077518, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.2550364
+      value: 1.5899998
       objectReference: {fileID: 0}
     - target: {fileID: 8454437800302077518, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.9438486
+      value: -20.11
       objectReference: {fileID: 0}
     - target: {fileID: 8454437800302077518, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1391826
+      value: -0.09796727
       objectReference: {fileID: 0}
     - target: {fileID: 8454437800302077518, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5546,6 +5571,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: itemToLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c39b0412fd7e4a40b6baadab51edb88, type: 2}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1622405152}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7658,6 +7691,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: itemToLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c39b0412fd7e4a40b6baadab51edb88, type: 2}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1622405152}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7797,8 +7838,16 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 582071660}
+    m_TransformParent: {fileID: 396647218}
     m_Modifications:
+    - target: {fileID: 898680979161421635, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
+      propertyPath: itemToLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: 7f1d29609bbb3a94ea3a06443c7f9719, type: 2}
+    - target: {fileID: 898680979161421635, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1622405152}
     - target: {fileID: 7701746928271869969, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_Name
       value: AggressiveFish_1 (2)
@@ -7813,15 +7862,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8454437800302077518, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.865036
+      value: 0.98000014
       objectReference: {fileID: 0}
     - target: {fileID: 8454437800302077518, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.616152
+      value: -9.55
       objectReference: {fileID: 0}
     - target: {fileID: 8454437800302077518, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1391826
+      value: -0.09796727
       objectReference: {fileID: 0}
     - target: {fileID: 8454437800302077518, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9324,6 +9373,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: itemToLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c39b0412fd7e4a40b6baadab51edb88, type: 2}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1622405152}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9690,6 +9747,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: itemToLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c39b0412fd7e4a40b6baadab51edb88, type: 2}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1622405152}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9881,6 +9946,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: itemToLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c39b0412fd7e4a40b6baadab51edb88, type: 2}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1622405152}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10072,6 +10145,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: itemToLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c39b0412fd7e4a40b6baadab51edb88, type: 2}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1622405152}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10556,6 +10637,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: itemToLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c39b0412fd7e4a40b6baadab51edb88, type: 2}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1622405152}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11008,6 +11097,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: itemToLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c39b0412fd7e4a40b6baadab51edb88, type: 2}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1622405152}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11034,8 +11131,16 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 582071660}
+    m_TransformParent: {fileID: 396647218}
     m_Modifications:
+    - target: {fileID: 898680979161421635, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
+      propertyPath: itemToLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: 7f1d29609bbb3a94ea3a06443c7f9719, type: 2}
+    - target: {fileID: 898680979161421635, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1622405152}
     - target: {fileID: 7701746928271869969, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_Name
       value: AggressiveFish_1 (1)
@@ -11050,15 +11155,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8454437800302077518, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.8550363
+      value: 2.99
       objectReference: {fileID: 0}
     - target: {fileID: 8454437800302077518, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.666152
+      value: -5.5
       objectReference: {fileID: 0}
     - target: {fileID: 8454437800302077518, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1391826
+      value: -0.09796727
       objectReference: {fileID: 0}
     - target: {fileID: 8454437800302077518, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12626,7 +12731,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2098611782}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.12, y: 0.06, z: 0}
+  m_LocalPosition: {x: 0.25, y: 0.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12884,8 +12989,20 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 582071660}
+    m_TransformParent: {fileID: 396647218}
     m_Modifications:
+    - target: {fileID: 898680979161421635, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
+      propertyPath: itemToLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: 7f1d29609bbb3a94ea3a06443c7f9719, type: 2}
+    - target: {fileID: 898680979161421635, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1622405152}
+    - target: {fileID: 7279843894918641471, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
+      propertyPath: m_Radius
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7701746928271869969, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_Name
       value: AggressiveFish_1
@@ -12900,15 +13017,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8454437800302077518, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.505035
+      value: 1.16
       objectReference: {fileID: 0}
     - target: {fileID: 8454437800302077518, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.016152
+      value: -15.1
       objectReference: {fileID: 0}
     - target: {fileID: 8454437800302077518, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1391826
+      value: -0.09796727
       objectReference: {fileID: 0}
     - target: {fileID: 8454437800302077518, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: m_LocalRotation.w
