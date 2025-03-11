@@ -26,7 +26,7 @@ namespace Fish
         private Rigidbody2D _playerRigidbody;
         private StatusBarController _statusBarController;
         private Queue<Vector2> _velocityHistory = new Queue<Vector2>();
-        private float _trackDuration = 0.25f;
+        private float _trackDuration = 0.1f;
         private Vector2 _delayedVelocity;
 
         public bool IsHurting { get; private set; }
@@ -118,7 +118,15 @@ namespace Fish
             _spriteRenderer.color = Color.red;
             
             var directionX = _delayedVelocity.x > 0 ? -1 : 1;
-            _rigidbody.AddForce(new Vector2(directionX * 2.5f, 0), ForceMode2D.Impulse);
+            // _rigidbody.AddForce(new Vector2(directionX * 2.5f, 0), ForceMode2D.Impulse);
+            _rigidbody.velocity = new Vector2(directionX, _rigidbody.velocity.y);
+            _isMoving = false;
+            _statusBarController.Decrease(3); // TODO: Assign proper impact value
+
+            if (_statusBarController.Amount <= 0)
+            {
+                Destroy(gameObject);
+            }
             
             StartCoroutine(UnHurt());
         }
@@ -128,6 +136,7 @@ namespace Fish
             yield return new WaitForSeconds(1f);
             _spriteRenderer.color = _originalColor;
             IsHurting = false;
+            _isMoving = true;
         }
     }
 }

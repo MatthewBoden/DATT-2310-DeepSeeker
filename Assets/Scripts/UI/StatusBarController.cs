@@ -9,7 +9,7 @@ namespace UI
         [SerializeField] private float maxAmount;
 
         private Image _filler;
-        private float _amount;
+        public float Amount { get; private set; }
 
         private void Awake()
         {
@@ -26,7 +26,7 @@ namespace UI
 
         private void Start()
         {
-            _amount = maxAmount;
+            Amount = maxAmount;
         }
 
         public void Increase(float change)
@@ -43,8 +43,8 @@ namespace UI
 
         private void Change(float change)
         {
-            _amount = Math.Clamp(_amount + change, 0, maxAmount);
-            _filler.fillAmount = _amount / maxAmount;
+            Amount = Math.Clamp(Amount + change, 0, maxAmount);
+            _filler.fillAmount = Amount / maxAmount;
         }
 
         private static void ValidateChange(float change)
