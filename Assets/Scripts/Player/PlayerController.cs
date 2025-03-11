@@ -215,10 +215,12 @@ namespace Player
 
             foreach (var detectedCollider in detectedColliders)
             {
+                if (detectedCollider.isTrigger) continue;
+                
                 var damageable = detectedCollider.GetComponent<IDamageable>();
                 if (damageable is FishController fish)
                 {
-                    damageable.Damage(5, fortune);
+                    damageable.Damage(3, fortune);
                 }
                 else
                 {
@@ -245,10 +247,12 @@ namespace Player
 
             foreach (var detectedCollider in detectedColliders)
             {
+                if (detectedCollider.isTrigger) continue;
+
                 var damageable = detectedCollider.GetComponent<IDamageable>();
                 if (damageable is FishController fish)
                 {
-                    // Leave it for now
+                    damageable.Damage(1, fortune);
                 }
                 else
                 {
