@@ -16,7 +16,10 @@ namespace Fish
         [SerializeField] private float acceleration;
         [SerializeField] private float deceleration;
         [SerializeField] private float pushForce;
-        
+
+        [SerializeField] private InventoryManager inventoryManager;
+        [SerializeField] private Item itemToLoot; // Assigned in Inspector
+
         private bool _isMoving;
         private Vector2 _movementDirection;
         private Rigidbody2D _rigidbody;
@@ -45,6 +48,12 @@ namespace Fish
             _statusBarController = GetComponentInChildren<StatusBarController>();
 
             InvokeRepeating(nameof(UpdateVelocityHistory), 0f, Time.fixedDeltaTime);
+
+            if (inventoryManager == null)
+            {
+                inventoryManager = FindObjectOfType<InventoryManager>();
+            }
+
         }
         
         private void UpdateVelocityHistory()
@@ -128,6 +137,9 @@ namespace Fish
             if (_statusBarController.Amount <= 0)
             {
                 Destroy(gameObject);
+                bool result = inventoryManager.AddItem(itemToLoot);
+                Debug.Log("Fish is destoryed and added to inventory");
+
             }
             
             StartCoroutine(UnHurt());
