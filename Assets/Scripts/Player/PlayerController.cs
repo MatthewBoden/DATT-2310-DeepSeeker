@@ -37,6 +37,8 @@ namespace Player
         [SerializeField] private LayerMask damageableLayer;
         [SerializeField] private GameObject attackPosition;
         [SerializeField] private Vector2 attackCapsuleSize;
+        [SerializeField] private GameObject inventoryMenu;
+        [SerializeField] private GameObject upgradeMenu;
 
         // State properties
         public bool IsSprinting { get; private set; }
@@ -80,6 +82,12 @@ namespace Player
             if (Input.GetKeyDown(KeyCode.J)) _animator.SetBool(AnimatorParamAttacking, IsAttacking = true);
             if (Input.GetKeyDown(KeyCode.K)) _animator.SetBool(AnimatorParamMining, IsMining = true);
             if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
+            if (Input.GetKeyDown(KeyCode.I)) {
+                inventoryMenu.SetActive(!inventoryMenu.activeSelf); 
+            }
+            if (Input.GetKeyDown(KeyCode.U)) {
+                upgradeMenu.SetActive(!upgradeMenu.activeSelf); 
+            }
 
             if (health <= 0) Die();
 
@@ -117,7 +125,6 @@ namespace Player
             {
                 IsSprinting = false;
             }
-
             // Update animator
             _animator.SetBool(AnimatorParamIsSprinting, IsSprinting);
 
@@ -194,7 +201,7 @@ namespace Player
         private void Die()
         {
             Debug.Log("Player Died! Restarting Level...");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene("GameOverScene");
         }
 
         private void ResetHurt()
