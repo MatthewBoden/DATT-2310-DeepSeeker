@@ -205,7 +205,17 @@ namespace Player
         {
             IsAttacking = true;
 
-            // TODO: Implement script for attacking fish
+            var damageables = Physics2D.OverlapCapsuleAll(
+                attackPosition.transform.position,
+                attackCapsuleSize,
+                CapsuleDirection2D.Horizontal,
+                0f,
+                damageableLayer);
+
+            foreach (var damageable in damageables)
+            {
+                damageable.GetComponent<IDamageable>().Damage(5, fortune); // TODO: Set up appropriate impact values
+            }
         }
 
         private void EndAttack()
