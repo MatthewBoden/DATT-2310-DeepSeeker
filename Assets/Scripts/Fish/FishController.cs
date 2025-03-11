@@ -92,7 +92,12 @@ namespace Fish
             var direction = (_player.transform.position - transform.position).normalized;
             _playerAnimator.SetBool(PlayerAnimatorParamAttacking, false);
             _playerRigidbody.AddForce(direction * pushForce, ForceMode2D.Impulse);
-            _player.TakeDamage(5.0f);
+
+            if (type == FishType.Aggressive)
+            {
+                _player.TakeDamage(5.0f);
+            }
+                
         }
 
         // Circle collider
