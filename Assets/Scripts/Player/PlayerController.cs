@@ -36,6 +36,8 @@ namespace Player
         [Header("Attack")]
         [SerializeField] private LayerMask damageableLayer;
         [SerializeField] private GameObject attackPosition;
+        [SerializeField] private GameObject minePosition;
+        [SerializeField] private Vector2 mineCapsuleSize;
         [SerializeField] private Vector2 attackCapsuleSize;
         [SerializeField] private GameObject inventoryMenu;
         [SerializeField] private GameObject upgradeMenu;
@@ -246,8 +248,8 @@ namespace Player
             IsMining = true;
 
             var detectedColliders = Physics2D.OverlapCapsuleAll(
-                attackPosition.transform.position,
-                attackCapsuleSize,
+                minePosition.transform.position,
+                mineCapsuleSize,
                 CapsuleDirection2D.Horizontal,
                 0f,
                 damageableLayer);

@@ -821,6 +821,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &215557289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 215557290}
+  m_Layer: 0
+  m_Name: MinePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &215557290
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215557289}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.25, y: 0.06, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 519524012}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &215954301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3557,6 +3588,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   attackPosition: {fileID: 2098611782}
+  minePosition: {fileID: 215557289}
+  mineCapsuleSize: {x: 0, y: 0.5}
   attackCapsuleSize: {x: 0.6, y: 0.1}
   inventoryMenu: {fileID: 23558533}
   upgradeMenu: {fileID: 611437287}
@@ -3687,6 +3720,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2098611783}
+  - {fileID: 215557290}
   - {fileID: 1622035936}
   m_Father: {fileID: 0}
   m_RootOrder: 8
