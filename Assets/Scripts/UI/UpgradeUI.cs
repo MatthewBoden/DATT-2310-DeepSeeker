@@ -10,7 +10,8 @@ public class UpgradeUI : MonoBehaviour
     [SerializeField] private TMP_Text gemCountText; // Reference to the UI text for gems
     [SerializeField] private GameObject upgradeMenu;
 
-    [SerializeField] private int gemCostPerUpgrade = 5;
+    [SerializeField] private int baseGemCost = 5;
+    [SerializeField] private float costMultiplier = 1.5f; // Increases cost exponentially
     [SerializeField] private int maxUpgradesPerStat = 5; // Maximum upgrade limit per stat
 
     private int strengthUpgrades = 0;
@@ -25,6 +26,12 @@ public class UpgradeUI : MonoBehaviour
     [SerializeField] private TMP_Text flashlightText;
     [SerializeField] private TMP_Text fortuneText;
 
+    [SerializeField] private TMP_Text strengthCostText;
+    [SerializeField] private TMP_Text healthCostText;
+    [SerializeField] private TMP_Text staminaCostText;
+    [SerializeField] private TMP_Text flashlightCostText;
+    [SerializeField] private TMP_Text fortuneCostText;
+
     private void Start()
     {
         if (inventoryManager == null)
@@ -32,6 +39,7 @@ public class UpgradeUI : MonoBehaviour
             inventoryManager = FindObjectOfType<InventoryManager>();
         }
         UpdateGemCount();
+        UpdateUpgradeUI();
     }
 
     private void Update()
@@ -50,54 +58,73 @@ public class UpgradeUI : MonoBehaviour
         }
     }
 
+    private int GetUpgradeCost(int upgradeLevel)
+    {
+        return Mathf.RoundToInt(baseGemCost * Mathf.Pow(costMultiplier, upgradeLevel));
+    }
+
+    private void UpdateUpgradeUI()
+    {
+        strengthText.text = $"{strengthUpgrades}/{maxUpgradesPerStat}";
+        healthText.text = $"{healthUpgrades}/{maxUpgradesPerStat}";
+        staminaText.text = $"{staminaUpgrades}/{maxUpgradesPerStat}";
+        flashlightText.text = $"{flashlightUpgrades}/{maxUpgradesPerStat}";
+        fortuneText.text = $"{fortuneUpgrades}/{maxUpgradesPerStat}";
+
+        strengthCostText.text = $"Cost: {GetUpgradeCost(strengthUpgrades)}";
+        healthCostText.text = $"Cost: {GetUpgradeCost(healthUpgrades)}";
+        staminaCostText.text = $"Cost: {GetUpgradeCost(staminaUpgrades)}";
+        flashlightCostText.text = $"Cost: {GetUpgradeCost(flashlightUpgrades)}";
+        fortuneCostText.text = $"Cost: {GetUpgradeCost(fortuneUpgrades)}";
+    }
+
     public void UpgradeStrength()
     {
-        if (strengthUpgrades < maxUpgradesPerStat && playerController.UpgradeStat("strength", gemCostPerUpgrade))
+        if (strengthUpgrades < maxUpgradesPerStat && playerController.UpgradeStat("strength"))
         {
             strengthUpgrades++;
-            strengthText.text = strengthUpgrades + "/" + maxUpgradesPerStat;
             UpdateGemCount();
+            UpdateUpgradeUI();
         }
     }
 
     public void UpgradeHealth()
     {
-        if (healthUpgrades < maxUpgradesPerStat && playerController.UpgradeStat("maxHealth", gemCostPerUpgrade))
+        if (healthUpgrades < maxUpgradesPerStat && playerController.UpgradeStat("maxHealth"))
         {
             healthUpgrades++;
-            healthText.text = healthUpgrades + "/" + maxUpgradesPerStat;
             UpdateGemCount();
+            UpdateUpgradeUI();
         }
     }
 
     public void UpgradeStamina()
     {
-        if (staminaUpgrades < maxUpgradesPerStat && playerController.UpgradeStat("maxStamina", gemCostPerUpgrade))
+        if (staminaUpgrades < maxUpgradesPerStat && playerController.UpgradeStat("maxStamina"))
         {
             staminaUpgrades++;
-            staminaText.text = staminaUpgrades + "/" + maxUpgradesPerStat;
             UpdateGemCount();
+            UpdateUpgradeUI();
         }
     }
 
     public void UpgradeFlashlight()
     {
-        if (flashlightUpgrades < maxUpgradesPerStat && playerController.UpgradeStat("flashlightStat", gemCostPerUpgrade))
+        if (flashlightUpgrades < maxUpgradesPerStat && playerController.UpgradeStat("flashlightStat"))
         {
             flashlightUpgrades++;
-            flashlightText.text = flashlightUpgrades + "/" + maxUpgradesPerStat;
             UpdateGemCount();
+            UpdateUpgradeUI();
         }
     }
 
     public void UpgradeFortune()
     {
-        if (fortuneUpgrades < maxUpgradesPerStat && playerController.UpgradeStat("fortune", gemCostPerUpgrade))
+        if (fortuneUpgrades < maxUpgradesPerStat && playerController.UpgradeStat("fortune"))
         {
             fortuneUpgrades++;
-            fortuneText.text = fortuneUpgrades + "/" + maxUpgradesPerStat;
             UpdateGemCount();
+            UpdateUpgradeUI();
         }
     }
-
 }

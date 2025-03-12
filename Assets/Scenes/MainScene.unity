@@ -3594,6 +3594,8 @@ MonoBehaviour:
   maxStamina: 100
   fortune: 1
   flashlightStat: 1
+  baseGemCost: 5
+  costMultiplier: 1.5
   healthBar: {fileID: 337447114}
   staminaBar: {fileID: 653812695}
   damageableLayer:
@@ -12321,13 +12323,19 @@ MonoBehaviour:
   inventoryManager: {fileID: 0}
   gemCountText: {fileID: 494390785}
   upgradeMenu: {fileID: 611437287}
-  gemCostPerUpgrade: 5
+  baseGemCost: 5
+  costMultiplier: 1.5
   maxUpgradesPerStat: 5
   strengthText: {fileID: 312369276}
   healthText: {fileID: 110307575}
   staminaText: {fileID: 1372172731}
   flashlightText: {fileID: 1647307260}
   fortuneText: {fileID: 1047182302}
+  strengthCostText: {fileID: 0}
+  healthCostText: {fileID: 0}
+  staminaCostText: {fileID: 0}
+  flashlightCostText: {fileID: 0}
+  fortuneCostText: {fileID: 0}
 --- !u!1 &1993357885
 GameObject:
   m_ObjectHideFlags: 0

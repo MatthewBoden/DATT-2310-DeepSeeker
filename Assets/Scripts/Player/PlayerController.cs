@@ -3,6 +3,7 @@ using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 namespace Player
 {
@@ -23,6 +24,8 @@ namespace Player
         [SerializeField] private float maxStamina = 100f;
         [SerializeField] private float fortune = 1.0f;
         [SerializeField] private float flashlightStat;
+        [SerializeField] private int baseGemCost = 5;
+        [SerializeField] private float costMultiplier = 1.5f;
         private float staminaDrainRate = 10f; // How much stamina drains per second when sprinting
         private float staminaRegenRate = 5f;  // How much stamina regenerates per second
         private float staminaRegenDelay = 2f; // Delay before stamina starts regenerating
@@ -41,6 +44,15 @@ namespace Player
         [SerializeField] private Vector2 attackCapsuleSize;
         [SerializeField] private GameObject inventoryMenu;
         [SerializeField] private GameObject upgradeMenu;
+
+        private Dictionary<string, int> upgradeLevels = new Dictionary<string, int>()
+        {
+            {"strength", 0},
+            {"maxHealth", 0},
+            {"maxStamina", 0},
+            {"flashlightStat", 0},
+            {"fortune", 0}
+        };
 
         // State properties
         public bool IsSprinting { get; private set; }
@@ -275,7 +287,7 @@ namespace Player
             _animator.SetBool(AnimatorParamMining, IsMining = false);
         }
 
-        public bool UpgradeStat(string statName, int gemCost)
+        public bool UpgradeStat(string statName)
         {
             if (_inventoryManager == null)
             {
@@ -283,12 +295,24 @@ namespace Player
                 return false;
             }
 
-            if (_inventoryManager.RemoveGems(gemCost))
+            // Get current upgrade level
+            if (!upgradeLevels.ContainsKey(statName))
+            {
+                Debug.LogError($"Invalid stat name: {statName}");
+                return false;
+            }
+
+            int currentLevel = upgradeLevels[statName];
+            int scaledGemCost = Mathf.RoundToInt(baseGemCost * Mathf.Pow(costMultiplier, currentLevel)); // Increase cost exponentially
+
+            Debug.Log($"Trying to upgrade {statName}. Current Level: {currentLevel}, Cost: {scaledGemCost}");
+
+            if (_inventoryManager.RemoveGems(scaledGemCost))
             {
                 switch (statName)
                 {
                     case "strength":
-                        strength += 2f; // Values will probably need to be finalized
+                        strength += 2f;
                         break;
                     case "maxHealth":
                         maxHealth += 5f;
@@ -307,12 +331,12 @@ namespace Player
                     case "fortune":
                         fortune += 0.5f;
                         break;
-                    default:
-                        Debug.LogError("Invalid stat name: " + statName);
-                        return false;
                 }
 
-                Debug.Log($"{statName} upgraded!");
+                // Increase upgrade level for this stat
+                upgradeLevels[statName]++;
+
+                Debug.Log($"{statName} upgraded to level {upgradeLevels[statName]}! New Cost: {Mathf.RoundToInt(baseGemCost * Mathf.Pow(costMultiplier, upgradeLevels[statName]))}");
                 return true;
             }
 
