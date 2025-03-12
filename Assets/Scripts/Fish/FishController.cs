@@ -32,6 +32,7 @@ namespace Fish
         private Queue<Vector2> _velocityHistory = new Queue<Vector2>();
         private float _trackDuration = 0.1f;
         private Vector2 _delayedVelocity;
+        private GameObject statusBar;
         
         private static readonly int PlayerAnimatorParamAttacking = Animator.StringToHash("IsAttacking");
 
@@ -46,6 +47,7 @@ namespace Fish
             _playerAnimator = _player.GetComponent<Animator>();
             _playerRigidbody = _player.GetComponent<Rigidbody2D>();
             _statusBarController = GetComponentInChildren<StatusBarController>();
+            statusBar = GetComponentInChildren<Transform>(true)?.Find("StatusBar")?.gameObject;
 
             InvokeRepeating(nameof(UpdateVelocityHistory), 0f, Time.fixedDeltaTime);
 
@@ -53,6 +55,8 @@ namespace Fish
             {
                 inventoryManager = FindObjectOfType<InventoryManager>();
             }
+
+            statusBar.SetActive(false);
 
         }
         
@@ -64,6 +68,13 @@ namespace Fish
             if (_velocityHistory.Count > _trackDuration / Time.fixedDeltaTime)
             {
                 _delayedVelocity = _velocityHistory.Dequeue();
+            }
+        }
+        private void Update()
+        {
+            if (statusBar != null)
+            {
+                statusBar.transform.rotation = Quaternion.identity; // Keep rotation fixed
             }
         }
 
@@ -126,6 +137,7 @@ namespace Fish
         public void Damage(float impact, float fortuneMultiplier)
         {
             if (IsHurting) return;
+            statusBar.SetActive(true);
             IsHurting = true;
             _spriteRenderer.color = Color.red;
             
