@@ -13134,6 +13134,10 @@ PrefabInstance:
       value: PassiveFish_1
       objectReference: {fileID: 0}
     - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
+      propertyPath: itemToLoot
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c39b0412fd7e4a40b6baadab51edb88, type: 2}
+    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
       propertyPath: inventoryManager
       value: 
       objectReference: {fileID: 1622405152}
