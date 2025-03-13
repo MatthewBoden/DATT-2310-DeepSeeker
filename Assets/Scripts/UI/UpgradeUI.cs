@@ -71,11 +71,11 @@ public class UpgradeUI : MonoBehaviour
         flashlightText.text = $"{flashlightUpgrades}/{maxUpgradesPerStat}";
         fortuneText.text = $"{fortuneUpgrades}/{maxUpgradesPerStat}";
 
-        strengthCostText.text = $"Cost: {GetUpgradeCost(strengthUpgrades)}";
-        healthCostText.text = $"Cost: {GetUpgradeCost(healthUpgrades)}";
-        staminaCostText.text = $"Cost: {GetUpgradeCost(staminaUpgrades)}";
-        flashlightCostText.text = $"Cost: {GetUpgradeCost(flashlightUpgrades)}";
-        fortuneCostText.text = $"Cost: {GetUpgradeCost(fortuneUpgrades)}";
+        strengthCostText.text = $"Cost:{GetUpgradeCost(strengthUpgrades)}";
+        healthCostText.text = $"Cost:{GetUpgradeCost(healthUpgrades)}";
+        staminaCostText.text = $"Cost:{GetUpgradeCost(staminaUpgrades)}";
+        flashlightCostText.text = $"Cost:{GetUpgradeCost(flashlightUpgrades)}";
+        fortuneCostText.text = $"Cost:{GetUpgradeCost(fortuneUpgrades)}";
     }
 
     public void UpgradeStrength()
