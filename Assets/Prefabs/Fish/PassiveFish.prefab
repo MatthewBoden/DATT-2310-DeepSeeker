@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 295739082650649844}
   - component: {fileID: 9090434161226058753}
   - component: {fileID: 6400430689831601065}
-  - component: {fileID: -4762516600586975289}
   m_Layer: 6
   m_Name: PassiveFish
   m_TagString: Untagged
@@ -236,20 +235,8 @@ MonoBehaviour:
   acceleration: 1.5
   deceleration: 0.75
   pushForce: 0
---- !u!114 &-4762516600586975289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1989619575712176513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5eb057a1527ffe43a082489aa53318c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   inventoryManager: {fileID: 0}
-  itemToLoot: {fileID: 11400000, guid: 8c39b0412fd7e4a40b6baadab51edb88, type: 2}
+  itemToLoot: {fileID: 0}
 --- !u!1001 &8015541378230439103
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -345,6 +332,10 @@ PrefabInstance:
     - target: {fileID: 719239049648593589, guid: 6928fe6fadbd6433589baf68c1f73166, type: 3}
       propertyPath: m_Name
       value: StatusBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024304152337872913, guid: 6928fe6fadbd6433589baf68c1f73166, type: 3}
+      propertyPath: maxAmount
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
