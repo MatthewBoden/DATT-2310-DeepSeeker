@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using Audio;
+using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -48,6 +49,7 @@ namespace Player
         
         [Header("Audio")]
         [SerializeField] private AudioClip attackSound;
+        [SerializeField] private AudioClip hurtSound;
 
         private Dictionary<string, int> upgradeLevels = new Dictionary<string, int>()
         {
@@ -169,6 +171,8 @@ namespace Player
             UpdateHealthBar();
 
             Debug.Log("Damage Taken: " + damage + " | Health Remaining: " + health);
+            
+            if (health > 0) _audioManager?.PlaySoundEffect(hurtSound);
 
             _animator.SetBool(AnimatorParamIsHurt, IsHurt = true);
             CancelInvoke(nameof(ResetHurt));
