@@ -108,7 +108,7 @@ MonoBehaviour:
   deceleration: 1.5
   pushForce: 1.25
   inventoryManager: {fileID: 0}
-  itemToLoot: {fileID: 0}
+  itemToLoot: {fileID: 11400000, guid: 51ff5e221cf3e49b8b71693d1d40c7c0, type: 2}
 --- !u!50 &3004750237979664958
 Rigidbody2D:
   serializedVersion: 4

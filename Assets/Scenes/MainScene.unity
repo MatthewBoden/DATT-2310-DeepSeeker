@@ -13777,6 +13777,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1779220540000151371, guid: 0a8cc0fd7520145a0b2ff646d664b7bc, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1622405152}
     - target: {fileID: 4711924534145090071, guid: 0a8cc0fd7520145a0b2ff646d664b7bc, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -13838,10 +13842,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 396647218}
     m_Modifications:
-    - target: {fileID: 898680979161421635, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
-      propertyPath: itemToLoot
-      value: 
-      objectReference: {fileID: 11400000, guid: 7f1d29609bbb3a94ea3a06443c7f9719, type: 2}
     - target: {fileID: 898680979161421635, guid: c6433074c3c904da881e3d56258f5c49, type: 3}
       propertyPath: inventoryManager
       value: 
@@ -13960,10 +13960,6 @@ PrefabInstance:
       value: PassiveFish_1
       objectReference: {fileID: 0}
     - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
-      propertyPath: itemToLoot
-      value: 
-      objectReference: {fileID: 11400000, guid: 8c39b0412fd7e4a40b6baadab51edb88, type: 2}
-    - target: {fileID: 6400430689831601065, guid: b7f3b3ef3ad884cbe83497200db5d92b, type: 3}
       propertyPath: inventoryManager
       value: 
       objectReference: {fileID: 1622405152}
@@ -13980,6 +13976,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1251558353798169580, guid: 83141b1d01fed4f608f315a64687ebbd, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 1622405152}
     - target: {fileID: 3264674280816343964, guid: 83141b1d01fed4f608f315a64687ebbd, type: 3}
       propertyPath: m_RootOrder
       value: 16

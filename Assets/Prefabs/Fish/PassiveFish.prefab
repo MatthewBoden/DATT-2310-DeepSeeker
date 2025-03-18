@@ -236,7 +236,7 @@ MonoBehaviour:
   deceleration: 0.75
   pushForce: 0
   inventoryManager: {fileID: 0}
-  itemToLoot: {fileID: 0}
+  itemToLoot: {fileID: 11400000, guid: 8c39b0412fd7e4a40b6baadab51edb88, type: 2}
 --- !u!1001 &8015541378230439103
 PrefabInstance:
   m_ObjectHideFlags: 0
