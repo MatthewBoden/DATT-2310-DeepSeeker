@@ -13,11 +13,16 @@ namespace Audio
 
         private void Awake()
         {
-            if (Instance == null) Instance = this;
+            if (Instance == null)
+            {
+                Debug.Log("Initializing singleton");
+                Instance = this;
+            }
         }
 
         private void Start()
         {
+            Debug.Log("Starting audio manager");
             backgroundMusicSource.clip = backgroundMusic;
             backgroundMusicSource.loop = true;
             backgroundMusicSource.Play();
@@ -34,6 +39,7 @@ namespace Audio
 
         public void PlaySoundEffect(AudioClip clip)
         {
+            Debug.Log("Calling SFX");
             soundEffectSource?.PlayOneShot(clip);
         }
     }

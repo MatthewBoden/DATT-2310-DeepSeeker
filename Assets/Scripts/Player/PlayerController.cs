@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using Audio;
 
 namespace Player
 {
@@ -44,6 +45,9 @@ namespace Player
         [SerializeField] private Vector2 attackCapsuleSize;
         [SerializeField] private GameObject inventoryMenu;
         [SerializeField] private GameObject upgradeMenu;
+        
+        [Header("Audio")]
+        [SerializeField] private AudioClip attackSound;
 
         private Dictionary<string, int> upgradeLevels = new Dictionary<string, int>()
         {
@@ -72,12 +76,14 @@ namespace Player
         private Vector2 _moveInput;
         private Animator _animator;
         private InventoryManager _inventoryManager;
+        private AudioManager _audioManager;
 
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
             _inventoryManager = FindObjectOfType<InventoryManager>();
+            _audioManager = AudioManager.Instance;
 
             // Ensure health starts at max
             health = maxHealth;
@@ -248,6 +254,10 @@ namespace Player
                     // Leave it for now
                 }
             }
+            
+            Debug.Log("Invoke attack SFX");
+            Debug.Log(_audioManager == null);
+            _audioManager?.PlaySoundEffect(attackSound);
         }
 
         private void EndAttack()
