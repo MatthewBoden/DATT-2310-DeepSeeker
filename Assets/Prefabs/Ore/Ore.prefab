@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3500582121601912174
 SpriteRenderer:
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: -994124169
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1128911699, guid: 0157f7baa19e4487daf6751c8ca2ebfd, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -1654889280, guid: 0157f7baa19e4487daf6751c8ca2ebfd, type: 3}
+  m_Color: {r: 0.42646015, g: 0.8962264, b: 0.35088107, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -181,6 +181,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durability: 5
   mineral: {fileID: 3938961323054963160, guid: 8f9ae4f5e82674cd2b7dd14c9358236d, type: 3}
-  mineralCount: 3
+  baseMineralCount: 0
   mineralSpawnRadius: 0.2
   mineralSpawnForce: 0.2
