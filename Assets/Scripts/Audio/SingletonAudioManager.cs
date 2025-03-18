@@ -2,14 +2,14 @@ using UnityEngine;
 
 namespace Audio
 {
-    public class AudioManager : MonoBehaviour
+    public class SingletonAudioManager : MonoBehaviour
     {
-        public static AudioManager Instance;
+        public static SingletonAudioManager Instance;
         // private GameManager _gameManager;
         [SerializeField] private AudioSource backgroundMusicSource;
         [SerializeField] private AudioSource soundEffectSource;
         [SerializeField] private AudioClip backgroundMusic;
-        // [SerializeField] private AudioClip soundEffectGameOver;
+        [SerializeField] private AudioClip soundEffectGameOver;
 
         private void Awake()
         {
@@ -41,6 +41,11 @@ namespace Audio
         {
             Debug.Log("Calling SFX");
             soundEffectSource?.PlayOneShot(clip);
+        }
+
+        public void PlayGameOverSound()
+        {
+            PlaySoundEffect(soundEffectGameOver);
         }
     }
 }

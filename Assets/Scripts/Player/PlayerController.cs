@@ -78,14 +78,14 @@ namespace Player
         private Vector2 _moveInput;
         private Animator _animator;
         private InventoryManager _inventoryManager;
-        private AudioManager _audioManager;
+        private SingletonAudioManager _singletonAudioManager;
 
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
             _inventoryManager = FindObjectOfType<InventoryManager>();
-            _audioManager = AudioManager.Instance;
+            _singletonAudioManager = SingletonAudioManager.Instance;
 
             // Ensure health starts at max
             health = maxHealth;
@@ -172,7 +172,7 @@ namespace Player
 
             Debug.Log("Damage Taken: " + damage + " | Health Remaining: " + health);
             
-            if (health > 0) _audioManager?.PlaySoundEffect(hurtSound);
+            if (health > 0) _singletonAudioManager?.PlaySoundEffect(hurtSound);
 
             _animator.SetBool(AnimatorParamIsHurt, IsHurt = true);
             CancelInvoke(nameof(ResetHurt));
@@ -259,9 +259,7 @@ namespace Player
                 }
             }
             
-            Debug.Log("Invoke attack SFX");
-            Debug.Log(_audioManager == null);
-            _audioManager?.PlaySoundEffect(attackSound);
+            _singletonAudioManager?.PlaySoundEffect(attackSound);
         }
 
         private void EndAttack()
