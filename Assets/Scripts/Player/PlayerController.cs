@@ -349,6 +349,8 @@ namespace Player
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(attackPosition.transform.position, attackCapsuleSize);
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireCube(attackPosition.transform.position, mineCapsuleSize);
         }
 
         public float GetFlashlightStat()

@@ -3957,7 +3957,7 @@ MonoBehaviour:
     m_Bits: 64
   attackPosition: {fileID: 2098611782}
   minePosition: {fileID: 215557289}
-  mineCapsuleSize: {x: 0, y: 0.5}
+  mineCapsuleSize: {x: 0.4, y: 0.6}
   attackCapsuleSize: {x: 0.6, y: 0.45}
   inventoryMenu: {fileID: 23558533}
   upgradeMenu: {fileID: 611437287}
