@@ -181,6 +181,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durability: 5
   mineral: {fileID: 3938961323054963160, guid: 8f9ae4f5e82674cd2b7dd14c9358236d, type: 3}
-  baseMineralCount: 0
+  baseMineralCount: 3
   mineralSpawnRadius: 0.2
   mineralSpawnForce: 0.2
