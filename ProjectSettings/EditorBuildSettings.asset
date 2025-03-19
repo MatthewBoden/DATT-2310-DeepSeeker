@@ -12,6 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/GameStartScene.unity
     guid: f8efaf1526fd69c4db81f7dca754ff3b
   - enabled: 1
+    path: Assets/Scenes/GameOptionsScene.unity
+    guid: 0d3cff930aeb19f48bd71e142f233912
+  - enabled: 1
+    path: Assets/Scenes/HowToPlayScene.unity
+    guid: 1a2dfea46d412cb478ed965ed6c83d39
+  - enabled: 1
+    path: Assets/Scenes/ControlsScene.unity
+    guid: a508d2728f45dbb4db12d0ea5ea12e8d
+  - enabled: 1
+    path: Assets/Scenes/CreditsScene.unity
+    guid: 5c2fb82378c54f94f8367e3761968020
+  - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 0bf1a19d5939afb4ea5256bc344aba11
   - enabled: 1
@@ -20,4 +32,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WinScene.unity
     guid: b851cd0e516b12142b2c40d3017bd783
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: 94711c6e2082c4d23b8d8bd303fdd6d9
+  - enabled: 1
+    path: Assets/Scenes/GameOverScene2.unity
+    guid: fe92c654bad165f4eacd4b95a90c06bb
+  - enabled: 1
+    path: Assets/Scenes/WinScene2.unity
+    guid: 8ee34ef69a58187419710eb8a3a97314
   m_configObjects: {}
