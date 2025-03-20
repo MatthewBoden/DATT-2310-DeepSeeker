@@ -159,7 +159,7 @@ namespace Fish
 
         private IEnumerator UnHurt()
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(type == FishType.Aggressive ? 1.5f : 0.5f);
             _spriteRenderer.color = _originalColor;
             IsHurting = false;
             _isMoving = true;

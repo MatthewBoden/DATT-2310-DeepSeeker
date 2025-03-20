@@ -16,34 +16,43 @@ public class InventoryManager : MonoBehaviour
         instance = this;
     }
 
-    public bool AddItem(Item item)
+    public bool AddItem(Item item, int count = 1)
     {
-        // If any slot has the same item with count lower than max, they will be stacked
-        for (int i = 0; i < inventorySlots.Length; i++)
+        int remaining = count;
+
+        // Stack into existing slots if possible
+        foreach (var slot in inventorySlots)
         {
-            InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-            if (itemInSlot != null && itemInSlot.item == item && itemInSlot.count < maxStackedItems && itemInSlot.item.stackable==true)
+
+            if (itemInSlot != null && itemInSlot.item == item && itemInSlot.item.stackable)
             {
-                itemInSlot.count++;
+                int spaceLeft = maxStackedItems - itemInSlot.count;
+                int amountToAdd = Mathf.Min(remaining, spaceLeft);
+                itemInSlot.count += amountToAdd;
                 itemInSlot.RefreshCount();
-                return true;
-            }
 
+                remaining -= amountToAdd;
+                if (remaining <= 0) return true;
+            }
         }
 
-        // Find empty Slot
-        for (int i = 0; i < inventorySlots.Length; i++) {
-            InventorySlot slot = inventorySlots[i];
+        // Create new stacks in empty slots
+        foreach (var slot in inventorySlots)
+        {
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-            if (itemInSlot == null) {
-                SpawnNewItem(item, slot);
-                return true;
+
+            if (itemInSlot == null)
+            {
+                int amountToAdd = Mathf.Min(remaining, maxStackedItems);
+                SpawnNewItem(item, slot, amountToAdd);
+                remaining -= amountToAdd;
+
+                if (remaining <= 0) return true;
             }
-            
         }
 
-        return false; // If inventory is full, will not add to inventory
+        return remaining == 0; // Returns false if inventory is full
     }
 
     public bool RemoveGems(int amount)
@@ -87,12 +96,23 @@ public class InventoryManager : MonoBehaviour
         }
         return gemCount;
     }
+    public void ClearInventory()
+    {
+        foreach (InventorySlot slot in inventorySlots)
+        {
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            if (itemInSlot != null)
+            {
+                Destroy(itemInSlot.gameObject);
+            }
+        }
+    }
 
-
-
-    void SpawnNewItem(Item item, InventorySlot slot) { 
+    private void SpawnNewItem(Item item, InventorySlot slot, int count)
+    {
         GameObject newItemGo = Instantiate(InventoryItemPrefab, slot.transform);
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
-        inventoryItem.InitializeItem(item);
+        inventoryItem.InitializeItem(item, count);
+        inventoryItem.RefreshCount();
     }
 }

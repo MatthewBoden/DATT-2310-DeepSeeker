@@ -88,6 +88,13 @@ namespace Player
             _inventoryManager = FindObjectOfType<InventoryManager>();
             _singletonAudioManager = SingletonAudioManager.Instance;
 
+            // Only Load Stats in Level 2
+            if (GameManager.instance != null && SceneManager.GetActiveScene().name == "Level2")
+            {
+                Debug.Log("Loading saved stats and inventory for Level 2...");
+                GameManager.instance.LoadPlayerData(this, _inventoryManager);
+            }
+
             // Ensure health starts at max
             health = maxHealth;
             UpdateHealthBar();
@@ -225,8 +232,18 @@ namespace Player
 
         private void Die()
         {
-            Debug.Log("Player Died! Restarting Level...");
-            SceneManager.LoadScene("GameOverScene");
+            Debug.Log("Player Died!");
+
+            string currentScene = SceneManager.GetActiveScene().name;
+
+            if (currentScene == "MainScene")
+            {
+                SceneManager.LoadScene("GameOverScene");
+            }
+            else if (currentScene == "Level2")
+            {
+                SceneManager.LoadScene("GameOverScene2");
+            }
         }
 
         private void ResetHurt()
@@ -364,11 +381,30 @@ namespace Player
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(attackPosition.transform.position, attackCapsuleSize);
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireCube(attackPosition.transform.position, mineCapsuleSize);
         }
 
-        public float GetFlashlightStat()
+        // Method to Set Stats (Used by GameManager)
+        public void SetStats(float health, float maxHealth, float strength, float stamina, float fortune, float flashlightStat, Dictionary<string, int> upgrades)
         {
-            return flashlightStat;
+            this.health = health;
+            this.maxHealth = maxHealth;
+            this.strength = strength;
+            this.stamina = stamina;
+            this.fortune = fortune;
+            this.flashlightStat = flashlightStat;
+            this.upgradeLevels = new Dictionary<string, int>(upgrades);
+
+            Debug.Log("Player stats updated after load!");
         }
+
+        public float GetHealth() => health;
+        public float GetMaxHealth() => maxHealth;
+        public float GetStrength() => strength;
+        public float GetStamina() => stamina;
+        public float GetFortune() => fortune;
+        public float GetFlashlightStat() => flashlightStat;
+        public Dictionary<string, int> GetUpgradeLevels() => upgradeLevels;
     }
 }

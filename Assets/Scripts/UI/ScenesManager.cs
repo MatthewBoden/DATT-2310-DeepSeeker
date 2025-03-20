@@ -1,3 +1,4 @@
+using Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class ScenesManager : MonoBehaviour
 
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "MainScene")
+        if (SceneManager.GetActiveScene().name == "MainScene" || SceneManager.GetActiveScene().name == "Level2")
         {
             CheckWinCondition();
         }
@@ -22,32 +23,88 @@ public class ScenesManager : MonoBehaviour
 
     public void CheckWinCondition()
     {
-        if (fishContainer.transform.childCount == 0) 
+        if (fishContainer != null && fishContainer.transform.childCount == 0)
         {
-            LoadWinScene();
+            if (SceneManager.GetActiveScene().name == "MainScene") {
+                GameManager.instance.SavePlayerData(
+                    FindObjectOfType<PlayerController>(),
+                    FindObjectOfType<InventoryManager>()
+                );
+                LoadWinScene();
+            }
+                
+            else if (SceneManager.GetActiveScene().name == "Level2")
+                LoadWinScene2();
         }
     }
 
+    // Load the Start Scene
     public void LoadStartScene()
     {
         SceneManager.LoadScene("GameStartScene");
     }
 
+    // Load the Main Game Scene (Level 1)
     public void LoadMainScene()
     {
         SceneManager.LoadScene("MainScene");
     }
 
+    // Load Level 2
+    public void LoadLevel2()
+    {
+        SceneManager.LoadScene("Level2");
+    }
+
+    // Load the Game Over Scene for Level 1
     public void LoadGameOverScene()
     {
         SceneManager.LoadScene("GameOverScene");
     }
 
+    // Load the Game Over Scene for Level 2
+    public void LoadGameOverScene2()
+    {
+        SceneManager.LoadScene("GameOverScene2");
+    }
+
+    // Load the Win Scene for Level 1
     public void LoadWinScene()
     {
         SceneManager.LoadScene("WinScene");
     }
 
+    // Load the Win Scene for Level 2
+    public void LoadWinScene2()
+    {
+        SceneManager.LoadScene("WinScene2");
+    }
+
+    // Load the Game Options Menu
+    public void LoadGameOptionsScene()
+    {
+        SceneManager.LoadScene("GameOptionsScene");
+    }
+
+    // Load the How to Play Scene
+    public void LoadHowToPlayScene()
+    {
+        SceneManager.LoadScene("HowToPlayScene");
+    }
+
+    // Load the Controls Scene
+    public void LoadControlsScene()
+    {
+        SceneManager.LoadScene("ControlsScene");
+    }
+
+    // Load the Credits Scene
+    public void LoadCreditsScene()
+    {
+        SceneManager.LoadScene("CreditsScene");
+    }
+
+    // Quit the game
     public void QuitGame()
     {
         Application.Quit();
