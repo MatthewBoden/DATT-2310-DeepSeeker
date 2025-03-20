@@ -26,7 +26,6 @@ namespace Player
         [SerializeField] private float flashlightStat;
         [SerializeField] private int baseGemCost = 5;
         [SerializeField] private float costMultiplier = 1.5f;
-        private int gemCount;
         private float staminaDrainRate = 10f; // How much stamina drains per second when sprinting
         private float staminaRegenRate = 5f;  // How much stamina regenerates per second
         private float staminaRegenDelay = 2f; // Delay before stamina starts regenerating
@@ -83,8 +82,8 @@ namespace Player
             // Only Load Stats in Level 2
             if (GameManager.instance != null && SceneManager.GetActiveScene().name == "Level2")
             {
-                Debug.Log("Loading saved stats for Level 2...");
-                GameManager.instance.LoadPlayerStats(this);
+                Debug.Log("Loading saved stats and inventory for Level 2...");
+                GameManager.instance.LoadPlayerData(this, _inventoryManager);
             }
 
             // Ensure health starts at max
@@ -372,7 +371,7 @@ namespace Player
         }
 
         // Method to Set Stats (Used by GameManager)
-        public void SetStats(float health, float maxHealth, float strength, float stamina, float fortune, float flashlightStat, int gems, Dictionary<string, int> upgrades)
+        public void SetStats(float health, float maxHealth, float strength, float stamina, float fortune, float flashlightStat, Dictionary<string, int> upgrades)
         {
             this.health = health;
             this.maxHealth = maxHealth;
@@ -380,7 +379,6 @@ namespace Player
             this.stamina = stamina;
             this.fortune = fortune;
             this.flashlightStat = flashlightStat;
-            this.gemCount = gems;
             this.upgradeLevels = new Dictionary<string, int>(upgrades);
 
             Debug.Log("Player stats updated after load!");
@@ -392,7 +390,6 @@ namespace Player
         public float GetStamina() => stamina;
         public float GetFortune() => fortune;
         public float GetFlashlightStat() => flashlightStat;
-        public int GetGemCount() => gemCount;
         public Dictionary<string, int> GetUpgradeLevels() => upgradeLevels;
     }
 }

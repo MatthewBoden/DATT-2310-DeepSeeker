@@ -8,12 +8,12 @@ public class UpgradeUI : MonoBehaviour
 {
     [SerializeField] private PlayerController playerController;
     [SerializeField] private InventoryManager inventoryManager;
-    [SerializeField] private TMP_Text gemCountText; // Reference to the UI text for gems
+    [SerializeField] private TMP_Text gemCountText;
     [SerializeField] private GameObject upgradeMenu;
 
     [SerializeField] private int baseGemCost = 5;
-    [SerializeField] private float costMultiplier = 1.5f; // Increases cost exponentially
-    [SerializeField] private int maxUpgradesPerStat = 5; // Maximum upgrade limit per stat
+    [SerializeField] private float costMultiplier = 1.5f;
+    [SerializeField] private int maxUpgradesPerStat = 5;
 
     private int strengthUpgrades = 0;
     private int healthUpgrades = 0;
@@ -45,7 +45,7 @@ public class UpgradeUI : MonoBehaviour
 
     private void Update()
     {
-        if (upgradeMenu.activeSelf) // Only update when menu is visible
+        if (upgradeMenu.activeSelf)
         {
             UpdateGemCount();
         }
@@ -55,7 +55,7 @@ public class UpgradeUI : MonoBehaviour
     {
         if (gemCountText != null)
         {
-            gemCountText.text = "" + inventoryManager.GetGemCount();
+            gemCountText.text = inventoryManager.GetGemCount().ToString();
         }
     }
 
@@ -66,7 +66,6 @@ public class UpgradeUI : MonoBehaviour
 
     private void UpdateUpgradeUI()
     {
-        // Get upgrade levels from PlayerController
         Dictionary<string, int> upgradeLevels = playerController.GetUpgradeLevels();
 
         strengthUpgrades = upgradeLevels["strength"];
@@ -75,19 +74,17 @@ public class UpgradeUI : MonoBehaviour
         flashlightUpgrades = upgradeLevels["flashlightStat"];
         fortuneUpgrades = upgradeLevels["fortune"];
 
-        // Update UI texts
         strengthText.text = $"{strengthUpgrades}/{maxUpgradesPerStat}";
         healthText.text = $"{healthUpgrades}/{maxUpgradesPerStat}";
         staminaText.text = $"{staminaUpgrades}/{maxUpgradesPerStat}";
         flashlightText.text = $"{flashlightUpgrades}/{maxUpgradesPerStat}";
         fortuneText.text = $"{fortuneUpgrades}/{maxUpgradesPerStat}";
 
-        // Update upgrade costs
-        strengthCostText.text = $"Cost:{GetUpgradeCost(strengthUpgrades)}";
-        healthCostText.text = $"Cost:{GetUpgradeCost(healthUpgrades)}";
-        staminaCostText.text = $"Cost:{GetUpgradeCost(staminaUpgrades)}";
-        flashlightCostText.text = $"Cost:{GetUpgradeCost(flashlightUpgrades)}";
-        fortuneCostText.text = $"Cost:{GetUpgradeCost(fortuneUpgrades)}";
+        strengthCostText.text = strengthUpgrades >= maxUpgradesPerStat ? "MAXED" : $"Cost: {GetUpgradeCost(strengthUpgrades)}";
+        healthCostText.text = healthUpgrades >= maxUpgradesPerStat ? "MAXED" : $"Cost: {GetUpgradeCost(healthUpgrades)}";
+        staminaCostText.text = staminaUpgrades >= maxUpgradesPerStat ? "MAXED" : $"Cost: {GetUpgradeCost(staminaUpgrades)}";
+        flashlightCostText.text = flashlightUpgrades >= maxUpgradesPerStat ? "MAXED" : $"Cost: {GetUpgradeCost(flashlightUpgrades)}";
+        fortuneCostText.text = fortuneUpgrades >= maxUpgradesPerStat ? "MAXED" : $"Cost: {GetUpgradeCost(fortuneUpgrades)}";
     }
 
     public void UpgradeStrength()

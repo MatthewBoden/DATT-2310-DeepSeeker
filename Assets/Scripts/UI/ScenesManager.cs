@@ -26,7 +26,10 @@ public class ScenesManager : MonoBehaviour
         if (fishContainer != null && fishContainer.transform.childCount == 0)
         {
             if (SceneManager.GetActiveScene().name == "MainScene") {
-                GameManager.instance.SavePlayerStats(FindObjectOfType<PlayerController>());
+                GameManager.instance.SavePlayerData(
+                    FindObjectOfType<PlayerController>(),
+                    FindObjectOfType<InventoryManager>()
+                );
                 LoadWinScene();
             }
                 

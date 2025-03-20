@@ -22,11 +22,16 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         InitializeItem(item);
     }
 
-    public void InitializeItem(Item newItem)
+    public void InitializeItem(Item newItem, int itemCount = 1)
     {
+        if (item != null && item == newItem) return; // Prevent resetting
+
         item = newItem;
+        count = itemCount > 0 ? itemCount : 1; // Use the correct count
         image.sprite = newItem.image;
         RefreshCount();
+
+        Debug.Log($"Initialized {count}x {item.name}");
     }
 
     public void RefreshCount() {
