@@ -49,6 +49,7 @@ namespace Player
         
         [Header("Audio")]
         [SerializeField] private AudioClip attackSound;
+        [FormerlySerializedAs("soundAxe")] [SerializeField] private AudioClip axeSound;
         [SerializeField] private AudioClip hurtSound;
 
         private Dictionary<string, int> upgradeLevels = new Dictionary<string, int>()
@@ -292,6 +293,8 @@ namespace Player
                     damageable.Damage(3, fortune);
                 }
             }
+            
+            _singletonAudioManager?.PlaySoundEffect(axeSound);
         }
 
         private void EndMine()

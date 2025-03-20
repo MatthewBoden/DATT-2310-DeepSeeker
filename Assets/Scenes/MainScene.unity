@@ -3962,6 +3962,7 @@ MonoBehaviour:
   inventoryMenu: {fileID: 23558533}
   upgradeMenu: {fileID: 611437287}
   attackSound: {fileID: 8300000, guid: ceacbbf9896aa4e4f90ef58929760700, type: 3}
+  axeSound: {fileID: 8300000, guid: 4187033bbb77e4c9696788d10cb9eff2, type: 3}
   hurtSound: {fileID: 8300000, guid: 28abd5310282e46dfac5ca651953b1fa, type: 3}
 --- !u!70 &519524009
 CapsuleCollider2D:
@@ -12723,6 +12724,7 @@ MonoBehaviour:
   backgroundMusicSource: {fileID: 1601904535}
   soundEffectSource: {fileID: 1730590712}
   backgroundMusic: {fileID: 8300000, guid: 850966935f695403ba1301ceb3919fa1, type: 3}
+  soundEffectGameOver: {fileID: 0}
 --- !u!4 &1836952559
 Transform:
   m_ObjectHideFlags: 0
