@@ -181,6 +181,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durability: 5
   mineral: {fileID: 3938961323054963160, guid: 8f9ae4f5e82674cd2b7dd14c9358236d, type: 3}
-  mineralCount: 3
+  baseMineralCount: 0
   mineralSpawnRadius: 0.2
   mineralSpawnForce: 0.2
+  hitOreSound: {fileID: 8300000, guid: a76aea8b798db45d89e595437c20afbc, type: 3}
+  destroyOreSound: {fileID: 8300000, guid: c78aece162e814d8aa082d6185425844, type: 3}
