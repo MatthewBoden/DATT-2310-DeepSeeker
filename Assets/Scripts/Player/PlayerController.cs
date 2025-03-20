@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using Audio;
+using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -44,6 +46,11 @@ namespace Player
         [SerializeField] private Vector2 attackCapsuleSize;
         [SerializeField] private GameObject inventoryMenu;
         [SerializeField] private GameObject upgradeMenu;
+        
+        [Header("Audio")]
+        [SerializeField] private AudioClip attackSound;
+        [FormerlySerializedAs("soundAxe")] [SerializeField] private AudioClip axeSound;
+        [SerializeField] private AudioClip hurtSound;
 
         private Dictionary<string, int> upgradeLevels = new Dictionary<string, int>()
         {
@@ -72,12 +79,14 @@ namespace Player
         private Vector2 _moveInput;
         private Animator _animator;
         private InventoryManager _inventoryManager;
+        private SingletonAudioManager _singletonAudioManager;
 
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
             _inventoryManager = FindObjectOfType<InventoryManager>();
+            _singletonAudioManager = SingletonAudioManager.Instance;
 
             // Only Load Stats in Level 2
             if (GameManager.instance != null && SceneManager.GetActiveScene().name == "Level2")
@@ -170,6 +179,8 @@ namespace Player
             UpdateHealthBar();
 
             Debug.Log("Damage Taken: " + damage + " | Health Remaining: " + health);
+            
+            if (health > 0) _singletonAudioManager?.PlaySoundEffect(hurtSound);
 
             _animator.SetBool(AnimatorParamIsHurt, IsHurt = true);
             CancelInvoke(nameof(ResetHurt));
@@ -265,6 +276,8 @@ namespace Player
                     // Leave it for now
                 }
             }
+            
+            _singletonAudioManager?.PlaySoundEffect(attackSound);
         }
 
         private void EndAttack()
@@ -297,6 +310,8 @@ namespace Player
                     damageable.Damage(3, fortune);
                 }
             }
+            
+            _singletonAudioManager?.PlaySoundEffect(axeSound);
         }
 
         private void EndMine()

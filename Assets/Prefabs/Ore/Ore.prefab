@@ -184,3 +184,5 @@ MonoBehaviour:
   baseMineralCount: 3
   mineralSpawnRadius: 0.2
   mineralSpawnForce: 0.2
+  hitOreSound: {fileID: 8300000, guid: a76aea8b798db45d89e595437c20afbc, type: 3}
+  destroyOreSound: {fileID: 8300000, guid: c78aece162e814d8aa082d6185425844, type: 3}
