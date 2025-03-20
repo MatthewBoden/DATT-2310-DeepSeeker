@@ -26,6 +26,7 @@ namespace Player
         [SerializeField] private float flashlightStat;
         [SerializeField] private int baseGemCost = 5;
         [SerializeField] private float costMultiplier = 1.5f;
+        private int gemCount;
         private float staminaDrainRate = 10f; // How much stamina drains per second when sprinting
         private float staminaRegenRate = 5f;  // How much stamina regenerates per second
         private float staminaRegenDelay = 2f; // Delay before stamina starts regenerating
@@ -78,6 +79,13 @@ namespace Player
             _rigidbody = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
             _inventoryManager = FindObjectOfType<InventoryManager>();
+
+            // Only Load Stats in Level 2
+            if (GameManager.instance != null && SceneManager.GetActiveScene().name == "Level2")
+            {
+                Debug.Log("Loading saved stats for Level 2...");
+                GameManager.instance.LoadPlayerStats(this);
+            }
 
             // Ensure health starts at max
             health = maxHealth;
@@ -363,9 +371,28 @@ namespace Player
             Gizmos.DrawWireCube(attackPosition.transform.position, mineCapsuleSize);
         }
 
-        public float GetFlashlightStat()
+        // Method to Set Stats (Used by GameManager)
+        public void SetStats(float health, float maxHealth, float strength, float stamina, float fortune, float flashlightStat, int gems, Dictionary<string, int> upgrades)
         {
-            return flashlightStat;
+            this.health = health;
+            this.maxHealth = maxHealth;
+            this.strength = strength;
+            this.stamina = stamina;
+            this.fortune = fortune;
+            this.flashlightStat = flashlightStat;
+            this.gemCount = gems;
+            this.upgradeLevels = new Dictionary<string, int>(upgrades);
+
+            Debug.Log("Player stats updated after load!");
         }
+
+        public float GetHealth() => health;
+        public float GetMaxHealth() => maxHealth;
+        public float GetStrength() => strength;
+        public float GetStamina() => stamina;
+        public float GetFortune() => fortune;
+        public float GetFlashlightStat() => flashlightStat;
+        public int GetGemCount() => gemCount;
+        public Dictionary<string, int> GetUpgradeLevels() => upgradeLevels;
     }
 }

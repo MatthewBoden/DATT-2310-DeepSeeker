@@ -1,4 +1,5 @@
 ﻿using Player;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -65,12 +66,23 @@ public class UpgradeUI : MonoBehaviour
 
     private void UpdateUpgradeUI()
     {
+        // Get upgrade levels from PlayerController
+        Dictionary<string, int> upgradeLevels = playerController.GetUpgradeLevels();
+
+        strengthUpgrades = upgradeLevels["strength"];
+        healthUpgrades = upgradeLevels["maxHealth"];
+        staminaUpgrades = upgradeLevels["maxStamina"];
+        flashlightUpgrades = upgradeLevels["flashlightStat"];
+        fortuneUpgrades = upgradeLevels["fortune"];
+
+        // Update UI texts
         strengthText.text = $"{strengthUpgrades}/{maxUpgradesPerStat}";
         healthText.text = $"{healthUpgrades}/{maxUpgradesPerStat}";
         staminaText.text = $"{staminaUpgrades}/{maxUpgradesPerStat}";
         flashlightText.text = $"{flashlightUpgrades}/{maxUpgradesPerStat}";
         fortuneText.text = $"{fortuneUpgrades}/{maxUpgradesPerStat}";
 
+        // Update upgrade costs
         strengthCostText.text = $"Cost:{GetUpgradeCost(strengthUpgrades)}";
         healthCostText.text = $"Cost:{GetUpgradeCost(healthUpgrades)}";
         staminaCostText.text = $"Cost:{GetUpgradeCost(staminaUpgrades)}";

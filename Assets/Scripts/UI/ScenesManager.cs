@@ -1,3 +1,4 @@
+using Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,8 +25,11 @@ public class ScenesManager : MonoBehaviour
     {
         if (fishContainer != null && fishContainer.transform.childCount == 0)
         {
-            if (SceneManager.GetActiveScene().name == "MainScene")
+            if (SceneManager.GetActiveScene().name == "MainScene") {
+                GameManager.instance.SavePlayerStats(FindObjectOfType<PlayerController>());
                 LoadWinScene();
+            }
+                
             else if (SceneManager.GetActiveScene().name == "Level2")
                 LoadWinScene2();
         }
