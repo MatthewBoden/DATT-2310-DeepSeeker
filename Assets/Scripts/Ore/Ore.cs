@@ -26,12 +26,12 @@ namespace Ore
         {
             if ((durability -= impact) > 0)
             {
-                _singletonAudioManager.PlaySoundEffect(hitOreSound);
+                _singletonAudioManager.PlaySoundEffect(hitOreSound, 0.25f);
                 return;
             }
 
             // Determine mineral count based on fortune
-            int finalMineralCount = Mathf.CeilToInt(baseMineralCount * fortuneMultiplier);
+            var finalMineralCount = Mathf.CeilToInt(baseMineralCount * fortuneMultiplier);
 
             for (var i = 0; i < finalMineralCount; i++)
             {
@@ -41,7 +41,7 @@ namespace Ore
                 instance.GetComponent<Rigidbody2D>().AddForce(randomDirection * mineralSpawnForce, ForceMode2D.Impulse);
             }
 
-            _singletonAudioManager.PlaySoundEffect(destroyOreSound);
+            _singletonAudioManager.PlaySoundEffect(destroyOreSound, 0.25f);
             Destroy(gameObject);
         }
     }
