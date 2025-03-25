@@ -37,10 +37,9 @@ namespace Audio
             // });
         }
 
-        public void PlaySoundEffect(AudioClip clip)
+        public void PlaySoundEffect(AudioClip clip, float volume = 1)
         {
-            Debug.Log("Calling SFX");
-            soundEffectSource?.PlayOneShot(clip);
+            soundEffectSource?.PlayOneShot(clip, volume);
         }
 
         public void PlayGameOverSound()

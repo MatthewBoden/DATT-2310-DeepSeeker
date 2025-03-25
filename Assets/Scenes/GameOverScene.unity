@@ -694,8 +694,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b7b8e83127b4aee90ed2a126dd146a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundEffectSource: {fileID: 1378290144}
-  gameOverSound: {fileID: 8300000, guid: 800aafbea176143319432bd19de83696, type: 3}
+  source: {fileID: 1378290144}
+  clip: {fileID: 8300000, guid: 800aafbea176143319432bd19de83696, type: 3}
 --- !u!4 &872989252
 Transform:
   m_ObjectHideFlags: 0

@@ -162,3 +162,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemToLoot: {fileID: 11400000, guid: 3d6f7c32215e2eb448980449a1216b8f, type: 2}
+  collectSound: {fileID: 8300000, guid: ea55202542d534e0cbe727207ece7538, type: 3}
