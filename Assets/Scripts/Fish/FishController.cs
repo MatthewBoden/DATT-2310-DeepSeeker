@@ -145,6 +145,8 @@ namespace Fish
             if (type == FishType.Aggressive) _rigidbody.velocity = new Vector2(directionX, _rigidbody.velocity.y);
             _isMoving = false;
             _statusBarController.Decrease(impact); // TODO: Assign proper impact value
+            Debug.Log($"[Build] Damage called on {name}. Amount before: {_statusBarController.Amount}, impact: {impact}");
+
 
             if (_statusBarController.Amount <= 0)
             {

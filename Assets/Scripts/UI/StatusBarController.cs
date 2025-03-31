@@ -22,10 +22,7 @@ namespace UI
 
             if (_filler == null)
                 throw new MissingComponentException($"{gameObject.name} is missing a Filler component.");
-        }
 
-        private void Start()
-        {
             Amount = maxAmount;
         }
 
