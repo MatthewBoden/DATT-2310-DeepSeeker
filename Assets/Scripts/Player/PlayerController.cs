@@ -21,7 +21,7 @@ namespace Player
         [SerializeField] private float maxHealth = 20f;
         private float healthRegenRate = 0.25f;  // How much stamina regenerates per second
         private float healthRegenDelay = 3f; // Delay before stamina starts regenerating
-        [SerializeField] private float strength;
+        [SerializeField] private float strength = 3f;
         [SerializeField] private float stamina = 100f;
         [SerializeField] private float maxStamina = 100f;
         [SerializeField] private float fortune = 1.0f;
@@ -269,7 +269,7 @@ namespace Player
                 var damageable = detectedCollider.GetComponent<IDamageable>();
                 if (damageable is FishController fish)
                 {
-                    damageable.Damage(3, fortune);
+                    damageable.Damage(strength, fortune);
                 }
                 else
                 {
@@ -344,7 +344,7 @@ namespace Player
                 switch (statName)
                 {
                     case "strength":
-                        strength += 2f;
+                        strength += 1f;
                         break;
                     case "maxHealth":
                         maxHealth += 5f;
