@@ -33,6 +33,7 @@ namespace Player
         private float staminaRegenDelay = 2f; // Delay before stamina starts regenerating
 
         private float lastSprintTime;
+        private bool _isAlive = true;
 
         [Header("UI")]
         [SerializeField] private Image healthBar;
@@ -234,6 +235,8 @@ namespace Player
 
         private void Die()
         {
+            if (!_isAlive) return;
+            _isAlive = false;
             Debug.Log("Player Died!");
 
             string currentScene = SceneManager.GetActiveScene().name;
