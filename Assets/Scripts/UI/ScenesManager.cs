@@ -86,24 +86,6 @@ public class ScenesManager : MonoBehaviour
         SceneManager.LoadScene("GameOptionsScene");
     }
 
-    // Load the How to Play Scene
-    public void LoadHowToPlayScene()
-    {
-        SceneManager.LoadScene("HowToPlayScene");
-    }
-
-    // Load the Controls Scene
-    public void LoadControlsScene()
-    {
-        SceneManager.LoadScene("ControlsScene");
-    }
-
-    // Load the Credits Scene
-    public void LoadCreditsScene()
-    {
-        SceneManager.LoadScene("CreditsScene");
-    }
-
     // Quit the game
     public void QuitGame()
     {
