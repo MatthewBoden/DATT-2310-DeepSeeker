@@ -6,7 +6,23 @@ using UnityEngine.SceneManagement;
 
 public class ScenesManager : MonoBehaviour
 {
+    public static ScenesManager Instance;
+    [SerializeField] private Animator transitionAnimator;
+    
     public GameObject fishContainer;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Update()
     {
@@ -37,6 +53,14 @@ public class ScenesManager : MonoBehaviour
                 LoadWinScene2();
         }
     }
+    
+    private IEnumerator LoadScene(string sceneName)
+    {
+        transitionAnimator?.SetTrigger("Close");
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(sceneName);
+        transitionAnimator?.SetTrigger("Open");
+    }
 
     // Load the Start Scene
     public void LoadStartScene()
@@ -47,61 +71,62 @@ public class ScenesManager : MonoBehaviour
     // Load the Main Game Scene (Level 1)
     public void LoadMainScene()
     {
-        SceneManager.LoadScene("MainScene");
+        Debug.Log("Play again button clicked.");
+        StartCoroutine(LoadScene("MainScene"));
     }
 
     // Load Level 2
     public void LoadLevel2()
     {
-        SceneManager.LoadScene("Level2");
+        StartCoroutine(LoadScene("Level2"));
     }
 
     // Load the Game Over Scene for Level 1
     public void LoadGameOverScene()
     {
-        SceneManager.LoadScene("GameOverScene");
+        StartCoroutine(LoadScene("GameOverScene"));
     }
 
     // Load the Game Over Scene for Level 2
     public void LoadGameOverScene2()
     {
-        SceneManager.LoadScene("GameOverScene2");
+        StartCoroutine(LoadScene("GameOverScene2"));
     }
 
     // Load the Win Scene for Level 1
     public void LoadWinScene()
     {
-        SceneManager.LoadScene("WinScene");
+        StartCoroutine(LoadScene("WinScene"));
     }
 
     // Load the Win Scene for Level 2
     public void LoadWinScene2()
     {
-        SceneManager.LoadScene("WinScene2");
+        StartCoroutine(LoadScene("WinScene2"));
     }
 
     // Load the Game Options Menu
     public void LoadGameOptionsScene()
     {
-        SceneManager.LoadScene("GameOptionsScene");
+        StartCoroutine(LoadScene("GameOptionsScene"));
     }
 
     // Load the How to Play Scene
     public void LoadHowToPlayScene()
     {
-        SceneManager.LoadScene("HowToPlayScene");
+        StartCoroutine(LoadScene("HowToPlayScene"));
     }
 
     // Load the Controls Scene
     public void LoadControlsScene()
     {
-        SceneManager.LoadScene("ControlsScene");
+        StartCoroutine(LoadScene("ControlsScene"));
     }
 
     // Load the Credits Scene
     public void LoadCreditsScene()
     {
-        SceneManager.LoadScene("CreditsScene");
+        StartCoroutine(LoadScene("CreditsScene"));
     }
 
     // Quit the game
