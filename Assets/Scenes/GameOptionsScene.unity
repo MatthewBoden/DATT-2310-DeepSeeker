@@ -1362,18 +1362,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Navigate the deep ocean using WASD or Arrow Keys to explore different
-    underwater areas and collect fish. There are two types of fish: Passive Fish,
-    which are safe to collect, and Hostile Fish, which will attack if you get too
-    close. Use your attack ability to defend yourself from hostile fish and collect
-    all different types to win your father''s approval. In addition to fishing, you
-    can mine deep-sea ores to obtain valuable materials and upgrade your fishing
-    and mining tools. Upgrading your gear allows you to explore deeper areas and
-    collect rarer resources. Be cautious, as hostile fish can kill you, so avoiding
-    them is crucial. Manage risk and reward carefully, venturing deeper may yield
-    better resources but also greater threats. The goal is to collect all fish types
-    and bring them back, proving yourself while upgrading your equipment and surviving
-    the dangers of the ocean.'
+  m_text: 'Navigate the deep ocean using WASD to explore different underwater areas
+    and collect fish. There are two types of fish: Passive Fish, which are safe to
+    collect, and Hostile Fish, which will attack if you get too close. Use your attack
+    ability to defend yourself from hostile fish and collect all different types
+    to win your father''s approval. In addition to fishing, you can mine deep-sea
+    ores to obtain valuable materials and upgrade your fishing and mining tools.
+    Upgrading your gear allows you to explore deeper areas and collect rarer resources.
+    Be cautious, as hostile fish can kill you, so avoiding them is crucial. Manage
+    risk and reward carefully, venturing deeper may yield better resources but also
+    greater threats. The goal is to collect all fish types and bring them back, proving
+    yourself while upgrading your equipment and surviving the dangers of the ocean.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 82c97a530d0d2af4da9a2b85fe3d0bb0, type: 2}
   m_sharedMaterial: {fileID: -37935455613750288, guid: 82c97a530d0d2af4da9a2b85fe3d0bb0, type: 2}
@@ -2289,16 +2288,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Movement: WASD/Arrow keys
+  m_text: 'Movement: WASD
 
     Sprint: SHIFT key
 
     Attack: J
 
-    Mine:
-    K
+    Mine: K
 
-    Upgrade Menu: U
+    Upgrade
+    Menu: U
 
     Inventory: I'
   m_isRightToLeft: 0
