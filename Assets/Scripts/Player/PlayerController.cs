@@ -75,6 +75,7 @@ namespace Player
         private static readonly int AnimatorParamIsMoving = Animator.StringToHash("IsMoving");
         private static readonly int AnimatorParamXVelocity = Animator.StringToHash("xVelocity");
         private static readonly int AnimatorParamIsHurt = Animator.StringToHash("IsHurt");
+        private static readonly int AnimatorParamDie = Animator.StringToHash("Die");
 
         private Rigidbody2D _rigidbody;
         private Vector2 _moveInput;
@@ -183,10 +184,13 @@ namespace Player
             UpdateHealthBar();
 
             Debug.Log("Damage Taken: " + damage + " | Health Remaining: " + health);
-            
-            if (health > 0) _singletonAudioManager?.PlaySoundEffect(hurtSound);
 
-            _animator.SetBool(AnimatorParamIsHurt, IsHurt = true);
+            if (health > 0)
+            {
+                _singletonAudioManager?.PlaySoundEffect(hurtSound);
+                _animator.SetBool(AnimatorParamIsHurt, IsHurt = true);
+            }
+
             CancelInvoke(nameof(ResetHurt));
             Invoke(nameof(ResetHurt), 1f);
         }
@@ -239,6 +243,8 @@ namespace Player
             if (!_isAlive) return;
             _isAlive = false;
             Debug.Log("Player Died!");
+            
+            _animator.SetTrigger(AnimatorParamDie);
 
             string currentScene = SceneManager.GetActiveScene().name;
 
