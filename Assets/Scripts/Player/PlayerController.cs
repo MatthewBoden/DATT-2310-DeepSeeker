@@ -33,6 +33,7 @@ namespace Player
         private float staminaRegenDelay = 2f; // Delay before stamina starts regenerating
 
         private float lastSprintTime;
+        private bool _isAlive = true;
 
         [Header("UI")]
         [SerializeField] private Image healthBar;
@@ -89,6 +90,7 @@ namespace Player
             _inventoryManager = FindObjectOfType<InventoryManager>();
             _singletonAudioManager = SingletonAudioManager.Instance;
             _scenesManager = ScenesManager.Instance;
+            _isAlive = true;
 
             // Only Load Stats in Level 2
             if (GameManager.instance != null && SceneManager.GetActiveScene().name == "Level2")
@@ -234,6 +236,8 @@ namespace Player
 
         private void Die()
         {
+            if (!_isAlive) return;
+            _isAlive = false;
             Debug.Log("Player Died!");
 
             string currentScene = SceneManager.GetActiveScene().name;
