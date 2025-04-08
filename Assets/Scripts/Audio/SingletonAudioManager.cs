@@ -10,7 +10,7 @@ namespace Audio
         [SerializeField] private AudioSource backgroundMusicSource;
         [SerializeField] private AudioSource soundEffectSource;
         [SerializeField] private AudioClip backgroundMusic;
-        [SerializeField] private AudioClip soundEffectGameOver;
+        [SerializeField] private AudioClip clickSound;
 
         public bool InGame { get; set; }
 
@@ -64,9 +64,9 @@ namespace Audio
             soundEffectSource?.PlayOneShot(clip, volume);
         }
 
-        public void PlayGameOverSound()
+        public void PlayClickSound()
         {
-            PlaySoundEffect(soundEffectGameOver);
+            soundEffectSource?.PlayOneShot(clickSound);
         }
     }
 }

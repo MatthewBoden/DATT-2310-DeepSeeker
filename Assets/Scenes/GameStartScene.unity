@@ -242,7 +242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fba28eab4854991a53a8723aa9c6d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickSound: {fileID: 0}
 --- !u!1 &312700551
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +603,7 @@ MonoBehaviour:
   backgroundMusicSource: {fileID: 347585089}
   soundEffectSource: {fileID: 578818411}
   backgroundMusic: {fileID: 8300000, guid: 850966935f695403ba1301ceb3919fa1, type: 3}
-  soundEffectGameOver: {fileID: 0}
+  clickSound: {fileID: 8300000, guid: abda444c71b4c441bbba99b2d36a275b, type: 3}
 --- !u!4 &352817902
 Transform:
   m_ObjectHideFlags: 0
