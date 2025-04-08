@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace UI
 {
@@ -30,6 +31,16 @@ namespace UI
         public void OnClickMenu()
         {
             _scenesManager.LoadStartScene();
+        }
+        
+        public void OnClickMenuNoTransition()
+        {
+            SceneManager.LoadScene("GameStartScene");
+        }
+
+        public void OnClickOptionsNoTransition()
+        {
+            SceneManager.LoadScene("GameOptionsScene");
         }
 
         public void OnClickQuit()
