@@ -5,18 +5,40 @@ namespace Audio
     public class SingletonAudioManager : MonoBehaviour
     {
         public static SingletonAudioManager Instance;
+        
         // private GameManager _gameManager;
         [SerializeField] private AudioSource backgroundMusicSource;
         [SerializeField] private AudioSource soundEffectSource;
         [SerializeField] private AudioClip backgroundMusic;
-        [SerializeField] private AudioClip soundEffectGameOver;
+        [SerializeField] private AudioClip clickSound;
+
+        public bool InGame { get; set; }
+
+        private bool _isBackgroundMusicPlaying;
 
         private void Awake()
         {
-            if (Instance == null)
+            if (Instance != null && Instance != this)
             {
-                Debug.Log("Initializing singleton");
-                Instance = this;
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
+        private void Update()
+        {
+            if (InGame && !_isBackgroundMusicPlaying)
+            {
+                backgroundMusicSource.Play();
+                _isBackgroundMusicPlaying = true;
+            }
+            else if (!InGame && _isBackgroundMusicPlaying)
+            {
+                backgroundMusicSource.Stop();
+                _isBackgroundMusicPlaying = false;
             }
         }
 
@@ -25,8 +47,8 @@ namespace Audio
             Debug.Log("Starting audio manager");
             backgroundMusicSource.clip = backgroundMusic;
             backgroundMusicSource.loop = true;
-            backgroundMusicSource.Play();
-        
+            // backgroundMusicSource.Play();
+
             // TODO: Add appropriate logic to play game over SFX
             // _gameManager = GameManager.Instance;
             // _gameManager.AddListenerOnStart(() => backgroundMusicSource.Play());
@@ -42,9 +64,9 @@ namespace Audio
             soundEffectSource?.PlayOneShot(clip, volume);
         }
 
-        public void PlayGameOverSound()
+        public void PlayClickSound()
         {
-            PlaySoundEffect(soundEffectGameOver);
+            soundEffectSource?.PlayOneShot(clickSound);
         }
     }
 }

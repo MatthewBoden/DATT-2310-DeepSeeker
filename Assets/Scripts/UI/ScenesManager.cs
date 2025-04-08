@@ -1,16 +1,51 @@
-using Player;
 using System.Collections;
-using System.Collections.Generic;
+using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ScenesManager : MonoBehaviour
 {
-    public GameObject fishContainer;
+    public static ScenesManager Instance { get; private set; }
 
+    private static readonly int AnimatorParamEnter = Animator.StringToHash("Enter");
+    private static readonly int AnimatorParamExit = Animator.StringToHash("Exit");
+
+    public GameObject fishContainer;
+    [SerializeField] private Animator transitionAnimator;
+
+    private bool _isPlaying;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        fishContainer = GameObject.Find("FishContainer");
+        _isPlaying = true;
+    }
+    
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "MainScene" || SceneManager.GetActiveScene().name == "Level2")
+        if ((SceneManager.GetActiveScene().name == "MainScene" || SceneManager.GetActiveScene().name == "Level2") && _isPlaying)
         {
             CheckWinCondition();
         }
@@ -25,59 +60,71 @@ public class ScenesManager : MonoBehaviour
     {
         if (fishContainer != null && fishContainer.transform.childCount == 0)
         {
-            if (SceneManager.GetActiveScene().name == "MainScene") {
+            if (SceneManager.GetActiveScene().name == "MainScene")
+            {
                 GameManager.instance.SavePlayerData(
                     FindObjectOfType<PlayerController>(),
                     FindObjectOfType<InventoryManager>()
                 );
                 LoadWinScene();
+                _isPlaying = false;
             }
-                
             else if (SceneManager.GetActiveScene().name == "Level2")
+            {
                 LoadWinScene2();
+                _isPlaying = false;
+            }
         }
+    }
+
+    private IEnumerator LoadScene(string sceneName)
+    {
+        transitionAnimator.SetTrigger(AnimatorParamExit);
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadSceneAsync(sceneName);
+        transitionAnimator.SetTrigger(AnimatorParamEnter);
     }
 
     // Load the Start Scene
     public void LoadStartScene()
     {
-        SceneManager.LoadScene("GameStartScene");
+        StartCoroutine(LoadScene("GameStartScene"));
     }
 
     // Load the Main Game Scene (Level 1)
     public void LoadMainScene()
     {
-        SceneManager.LoadScene("MainScene");
+        StartCoroutine(LoadScene("MainScene"));
     }
 
     // Load Level 2
     public void LoadLevel2()
     {
-        SceneManager.LoadScene("Level2");
+        StartCoroutine(LoadScene("Level2"));
     }
 
     // Load the Game Over Scene for Level 1
     public void LoadGameOverScene()
     {
-        SceneManager.LoadScene("GameOverScene");
+        StartCoroutine(LoadScene("GameOverScene"));
     }
 
     // Load the Game Over Scene for Level 2
     public void LoadGameOverScene2()
     {
-        SceneManager.LoadScene("GameOverScene2");
+        StartCoroutine(LoadScene("GameOverScene2"));
     }
 
     // Load the Win Scene for Level 1
     public void LoadWinScene()
     {
-        SceneManager.LoadScene("WinScene");
+        StartCoroutine(LoadScene("WinScene"));
     }
 
     // Load the Win Scene for Level 2
     public void LoadWinScene2()
     {
-        SceneManager.LoadScene("WinScene2");
+        StartCoroutine(LoadScene("WinScene2"));
     }
 
     // Load the Game Options Menu

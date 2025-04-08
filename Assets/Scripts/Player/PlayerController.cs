@@ -33,6 +33,7 @@ namespace Player
         private float staminaRegenDelay = 2f; // Delay before stamina starts regenerating
 
         private float lastSprintTime;
+        private bool _isAlive = true;
 
         [Header("UI")]
         [SerializeField] private Image healthBar;
@@ -74,12 +75,14 @@ namespace Player
         private static readonly int AnimatorParamIsMoving = Animator.StringToHash("IsMoving");
         private static readonly int AnimatorParamXVelocity = Animator.StringToHash("xVelocity");
         private static readonly int AnimatorParamIsHurt = Animator.StringToHash("IsHurt");
+        private static readonly int AnimatorParamDie = Animator.StringToHash("Die");
 
         private Rigidbody2D _rigidbody;
         private Vector2 _moveInput;
         private Animator _animator;
         private InventoryManager _inventoryManager;
         private SingletonAudioManager _singletonAudioManager;
+        private ScenesManager _scenesManager;
 
         private void Start()
         {
@@ -87,6 +90,9 @@ namespace Player
             _animator = GetComponent<Animator>();
             _inventoryManager = FindObjectOfType<InventoryManager>();
             _singletonAudioManager = SingletonAudioManager.Instance;
+            if (_singletonAudioManager != null) _singletonAudioManager.InGame = true;
+            _scenesManager = ScenesManager.Instance;
+            _isAlive = true;
 
             // Only Load Stats in Level 2
             if (GameManager.instance != null && SceneManager.GetActiveScene().name == "Level2")
@@ -179,10 +185,13 @@ namespace Player
             UpdateHealthBar();
 
             Debug.Log("Damage Taken: " + damage + " | Health Remaining: " + health);
-            
-            if (health > 0) _singletonAudioManager?.PlaySoundEffect(hurtSound);
 
-            _animator.SetBool(AnimatorParamIsHurt, IsHurt = true);
+            if (health > 0)
+            {
+                _singletonAudioManager?.PlaySoundEffect(hurtSound);
+                _animator.SetBool(AnimatorParamIsHurt, IsHurt = true);
+            }
+
             CancelInvoke(nameof(ResetHurt));
             Invoke(nameof(ResetHurt), 1f);
         }
@@ -232,17 +241,22 @@ namespace Player
 
         private void Die()
         {
+            if (!_isAlive) return;
+            _isAlive = false;
             Debug.Log("Player Died!");
+            
+            _animator.SetTrigger(AnimatorParamDie);
+            if (_singletonAudioManager != null) _singletonAudioManager.InGame = false;
 
             string currentScene = SceneManager.GetActiveScene().name;
 
             if (currentScene == "MainScene")
             {
-                SceneManager.LoadScene("GameOverScene");
+                _scenesManager.LoadGameOverScene();
             }
             else if (currentScene == "Level2")
             {
-                SceneManager.LoadScene("GameOverScene2");
+                _scenesManager.LoadGameOverScene2();
             }
         }
 

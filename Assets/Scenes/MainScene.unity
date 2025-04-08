@@ -1692,6 +1692,7 @@ GameObject:
   - component: {fileID: 283364887}
   - component: {fileID: 283364886}
   - component: {fileID: 283364885}
+  - component: {fileID: 283364889}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -1787,6 +1788,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!95 &283364889
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283364884}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7a680a6dd822241b7a37f20abde46c38, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &286624317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11716,7 +11738,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1668278791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11730,6 +11752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishContainer: {fileID: 396647217}
+  transitionAnimator: {fileID: 0}
 --- !u!4 &1668278792
 Transform:
   m_ObjectHideFlags: 0
@@ -12820,7 +12843,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1836952558
 MonoBehaviour:
   m_ObjectHideFlags: 0
