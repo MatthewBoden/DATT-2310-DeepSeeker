@@ -1,24 +1,27 @@
-using Player;
 using System.Collections;
-using System.Collections.Generic;
+using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ScenesManager : MonoBehaviour
 {
+    public static ScenesManager Instance { get; private set; }
+
     private static readonly int AnimatorParamEnter = Animator.StringToHash("Enter");
     private static readonly int AnimatorParamExit = Animator.StringToHash("Exit");
-    
+
     public GameObject fishContainer;
     [SerializeField] private Animator transitionAnimator;
 
     private void Awake()
     {
-        if (FindObjectsOfType<ScenesManager>().Length > 1)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
+
+        Instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
@@ -39,14 +42,15 @@ public class ScenesManager : MonoBehaviour
     {
         if (fishContainer != null && fishContainer.transform.childCount == 0)
         {
-            if (SceneManager.GetActiveScene().name == "MainScene") {
+            if (SceneManager.GetActiveScene().name == "MainScene")
+            {
                 GameManager.instance.SavePlayerData(
                     FindObjectOfType<PlayerController>(),
                     FindObjectOfType<InventoryManager>()
                 );
                 LoadWinScene();
             }
-                
+
             else if (SceneManager.GetActiveScene().name == "Level2")
                 LoadWinScene2();
         }
