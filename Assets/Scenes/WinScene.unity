@@ -1957,3 +1957,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fba28eab4854991a53a8723aa9c6d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickSound: {fileID: 0}

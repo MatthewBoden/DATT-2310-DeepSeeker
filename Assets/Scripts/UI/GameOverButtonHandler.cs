@@ -1,3 +1,4 @@
+using Audio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,7 +6,10 @@ namespace UI
 {
     public class GameOverButtonHandler : MonoBehaviour
     {
+        [SerializeField] private AudioClip clickSound;
+        
         private ScenesManager _scenesManager;
+        private SingletonAudioManager _singletonAudioManager;
 
         private void Start()
         {

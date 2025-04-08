@@ -1836,7 +1836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &239660952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12093,6 +12093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishContainer: {fileID: 1980301842}
+  transitionAnimator: {fileID: 0}
 --- !u!4 &1983155517
 Transform:
   m_ObjectHideFlags: 0

@@ -90,6 +90,7 @@ namespace Player
             _animator = GetComponent<Animator>();
             _inventoryManager = FindObjectOfType<InventoryManager>();
             _singletonAudioManager = SingletonAudioManager.Instance;
+            if (_singletonAudioManager != null) _singletonAudioManager.InGame = true;
             _scenesManager = ScenesManager.Instance;
             _isAlive = true;
 
@@ -245,6 +246,7 @@ namespace Player
             Debug.Log("Player Died!");
             
             _animator.SetTrigger(AnimatorParamDie);
+            if (_singletonAudioManager != null) _singletonAudioManager.InGame = false;
 
             string currentScene = SceneManager.GetActiveScene().name;
 
