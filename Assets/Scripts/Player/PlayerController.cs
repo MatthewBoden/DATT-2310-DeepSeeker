@@ -80,6 +80,7 @@ namespace Player
         private Animator _animator;
         private InventoryManager _inventoryManager;
         private SingletonAudioManager _singletonAudioManager;
+        private ScenesManager _scenesManager;
 
         private void Start()
         {
@@ -87,6 +88,7 @@ namespace Player
             _animator = GetComponent<Animator>();
             _inventoryManager = FindObjectOfType<InventoryManager>();
             _singletonAudioManager = SingletonAudioManager.Instance;
+            _scenesManager = ScenesManager.Instance;
 
             // Only Load Stats in Level 2
             if (GameManager.instance != null && SceneManager.GetActiveScene().name == "Level2")
@@ -238,11 +240,11 @@ namespace Player
 
             if (currentScene == "MainScene")
             {
-                SceneManager.LoadScene("GameOverScene");
+                _scenesManager.LoadGameOverScene();
             }
             else if (currentScene == "Level2")
             {
-                SceneManager.LoadScene("GameOverScene2");
+                _scenesManager.LoadGameOverScene2();
             }
         }
 

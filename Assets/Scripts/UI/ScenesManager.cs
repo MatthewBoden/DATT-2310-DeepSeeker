@@ -13,6 +13,8 @@ public class ScenesManager : MonoBehaviour
     public GameObject fishContainer;
     [SerializeField] private Animator transitionAnimator;
 
+    private bool _isPlaying;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -25,9 +27,25 @@ public class ScenesManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        fishContainer = GameObject.Find("FishContainer");
+        _isPlaying = true;
+    }
+    
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "MainScene" || SceneManager.GetActiveScene().name == "Level2")
+        if ((SceneManager.GetActiveScene().name == "MainScene" || SceneManager.GetActiveScene().name == "Level2") && _isPlaying)
         {
             CheckWinCondition();
         }
@@ -49,10 +67,13 @@ public class ScenesManager : MonoBehaviour
                     FindObjectOfType<InventoryManager>()
                 );
                 LoadWinScene();
+                _isPlaying = false;
             }
-
             else if (SceneManager.GetActiveScene().name == "Level2")
+            {
                 LoadWinScene2();
+                _isPlaying = false;
+            }
         }
     }
 
