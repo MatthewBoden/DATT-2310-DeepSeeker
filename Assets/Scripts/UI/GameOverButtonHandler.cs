@@ -21,6 +21,12 @@ namespace UI
             _scenesManager.LoadLevel2();
         }
 
+        // This has the same functionality as `OnClickPlayAgainLevel2`, but kept separate to be tidy and accommodate future updates
+        public void OnClickNextLevel()
+        {
+            _scenesManager.LoadLevel2();
+        }
+
         public void OnClickMenu()
         {
             _scenesManager.LoadStartScene();
