@@ -6,7 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class ScenesManager : MonoBehaviour
 {
+    private static readonly int AnimatorParamEnter = Animator.StringToHash("Enter");
+    private static readonly int AnimatorParamExit = Animator.StringToHash("Exit");
+    
     public GameObject fishContainer;
+    [SerializeField] private Animator transitionAnimator;
+
+    private void Awake()
+    {
+        if (FindObjectsOfType<ScenesManager>().Length > 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Update()
     {
@@ -38,46 +52,54 @@ public class ScenesManager : MonoBehaviour
         }
     }
 
+    private IEnumerator LoadScene(string sceneName)
+    {
+        transitionAnimator.SetTrigger(AnimatorParamExit);
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadSceneAsync(sceneName);
+        transitionAnimator.SetTrigger(AnimatorParamEnter);
+    }
+
     // Load the Start Scene
     public void LoadStartScene()
     {
-        SceneManager.LoadScene("GameStartScene");
+        StartCoroutine(LoadScene("GameStartScene"));
     }
 
     // Load the Main Game Scene (Level 1)
     public void LoadMainScene()
     {
-        SceneManager.LoadScene("MainScene");
+        StartCoroutine(LoadScene("MainScene"));
     }
 
     // Load Level 2
     public void LoadLevel2()
     {
-        SceneManager.LoadScene("Level2");
+        StartCoroutine(LoadScene("Level2"));
     }
 
     // Load the Game Over Scene for Level 1
     public void LoadGameOverScene()
     {
-        SceneManager.LoadScene("GameOverScene");
+        StartCoroutine(LoadScene("GameOverScene"));
     }
 
     // Load the Game Over Scene for Level 2
     public void LoadGameOverScene2()
     {
-        SceneManager.LoadScene("GameOverScene2");
+        StartCoroutine(LoadScene("GameOverScene2"));
     }
 
     // Load the Win Scene for Level 1
     public void LoadWinScene()
     {
-        SceneManager.LoadScene("WinScene");
+        StartCoroutine(LoadScene("WinScene"));
     }
 
     // Load the Win Scene for Level 2
     public void LoadWinScene2()
     {
-        SceneManager.LoadScene("WinScene2");
+        StartCoroutine(LoadScene("WinScene2"));
     }
 
     // Load the Game Options Menu
