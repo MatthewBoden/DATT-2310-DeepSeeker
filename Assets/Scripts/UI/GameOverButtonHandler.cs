@@ -15,6 +15,11 @@ namespace UI
             _singletonAudioManager = SingletonAudioManager.Instance;
         }
 
+        public void PlayClickSoundNoAction()
+        {
+            _singletonAudioManager.PlayClickSound();
+        }
+
         public void OnClickPlayAgainLevel1()
         {
             _singletonAudioManager.PlayClickSound();
