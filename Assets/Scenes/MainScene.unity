@@ -11850,6 +11850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishContainer: {fileID: 396647217}
+  transitionAnimator: {fileID: 0}
 --- !u!4 &1668278792
 Transform:
   m_ObjectHideFlags: 0
@@ -12156,7 +12157,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &1728408986
 Animator:
   serializedVersion: 5
